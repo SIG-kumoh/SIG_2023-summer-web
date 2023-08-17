@@ -20,6 +20,11 @@
 }
 .detail_card .topic_summary {
     font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+.detail_card .topic_summary_content {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
 }
 .detail_card .news_container {
     margin-top: 2rem;

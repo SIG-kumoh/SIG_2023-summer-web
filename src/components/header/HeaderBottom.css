@@ -23,3 +23,16 @@
     color: var(--maincolor);
     border-bottom: var(--maincolor) 1px solid;
 }
+
+@media (width < 530px) {
+    .header_bottom .header_bottom_inner {
+        font-size: 1rem;
+    }
+    .header_bottom .header_bottom_inner .header_bottom_card:first-child {
+        margin-left: 5px;
+    }
+    .header_bottom .header_bottom_inner .header_bottom_card {
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+}

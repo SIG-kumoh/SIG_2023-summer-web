@@ -13,7 +13,7 @@ export interface Topic {
     title:string, summary:string, title_img:string, topic_id:number
 }
 
-export const BaseURL = "http://192.168.0.8:8081"
+export const BaseURL = "http://202.31.202.34:443"
 
 export default async function GetServerData(url:string) {
     const topicData = await fetch(url)
