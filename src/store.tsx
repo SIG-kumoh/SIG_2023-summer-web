@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {persist} from "zustand/middleware";
+import {createJSONStorage, persist} from "zustand/middleware";
 
 interface Page {
     cur: number,
@@ -12,6 +12,7 @@ export const usePageStore = create<any>(
         cur: 0,
         setCur: (newCur:number) => set({cur: newCur}),
         }),
-        { name: "store.tsx"}
+        { name: "store.tsx",
+        storage: createJSONStorage(() => sessionStorage)}
     )
 )
