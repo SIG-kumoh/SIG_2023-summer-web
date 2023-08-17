@@ -23,7 +23,7 @@ export default function TopicPage() {
     const [page, setPage] = useState<number>( 1)
     const changePage = useCallback((page:number) => setPage(page), [])
     const location = useLocation()
-    const itemsCountPerPage = 5
+    const itemsCountPerPage = 7
 
     function createTopicCard(page: number, data: any) {
         const result = []
@@ -55,7 +55,8 @@ export default function TopicPage() {
         <div className="container">
             <div className="category_name">{detail.name}</div>
             {createTopicCard(page, data.topics)}
-            <Paging page={page} count={data.topics.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging>
+            {data.topics.length === 0 ? <></> :
+            <Paging page={page} count={data.topics.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging> }
         </div>
     )
 }

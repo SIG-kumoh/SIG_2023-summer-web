@@ -10,8 +10,8 @@ export default function Paging({page, count, itemsCountPerPage, setPage}: {page:
             itemsCountPerPage={itemsCountPerPage}
             totalItemsCount={count}
             pageRangeDisplayed={10}
-            prevPageText={"‹"}
-            nextPageText={"›"}
+            prevPageText={"<"}
+            nextPageText={">"}
             onChange={setPage}
         />
     );
