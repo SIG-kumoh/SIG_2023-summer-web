@@ -3,45 +3,16 @@ import './Paging.css';
 import Pagination from "react-js-pagination";
 
 
-export default function Paging(page:any, count:any, setPage:any) {
-    const [curPage, setCurPage] = useState(1);
-
-    const handlePageChange = (curPage: any) => {
-        setCurPage(curPage);
-    }
-
+export default function Paging({page, count, itemsCountPerPage, setPage}: {page: number, count: number, itemsCountPerPage: number, setPage: any}) {
     return (
         <Pagination
             activePage={page}
-            itemsCountPerPage={2}
-            totalItemsCount={10}
-            pageRangeDisplayed={5}
+            itemsCountPerPage={itemsCountPerPage}
+            totalItemsCount={count}
+            pageRangeDisplayed={10}
             prevPageText={"‹"}
             nextPageText={"›"}
-            onChange={() => {
-                handlePageChange(page);
-            }}
+            onChange={setPage}
         />
     );
 };
-/*
-export default function Paging({page, count, setPage}) {
-    const [curPage, setCurPage] = useState(1);
-
-    const handlePageChange = (curPage) => {
-        setCurPage(curPage);
-    }
-    return (
-        <Pagination
-            activePage={page}
-            itemsCountPerPage={2}
-            totalItemsCount={10}
-            pageRangeDisplayed={5}
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={() => {
-                handlePageChange(page);
-            }}
-        />
-    );
-};*/

@@ -2,8 +2,9 @@ import GetServerData, {BaseURL, Categories, Detail, Topic} from "../config";
 import TopicCard from "../components/topic-card/TopicCard";
 import {useQuery} from 'react-query';
 import {usePageStore} from "../store";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Paging from "../components/page/Paging";
+import {useLocation} from "react-router-dom";
 
 const dummyTopic:Topic = {
     title: "서버로부터 응답이 없습니다",
@@ -21,6 +22,26 @@ export default function TopicPage() {
         useQuery(['topic', detail.name], () => GetServerData(reqURL))
     const [page, setPage] = useState<number>( 1)
     const changePage = useCallback((page:number) => setPage(page), [])
+    const location = useLocation()
+    const itemsCountPerPage = 5
+
+    function createTopicCard(page: number, data: any) {
+        const result = []
+
+        for (let i = (page - 1) * itemsCountPerPage; i < page * itemsCountPerPage && i < data.length; i++) {
+            result.push(
+                <TopicCard key={data[i].topic_id} title={data[i].title} summary={data[i].summary} title_img={data[i].title_img}
+                           topic_id={data[i].topic_id}/>
+            )
+        }
+
+        return result
+    }
+
+    useEffect(() => {
+        setPage(1)
+    }, [location]);
+
     if (isLoading || isError) {
         return(
             <div className="container">
@@ -29,14 +50,12 @@ export default function TopicPage() {
             </div>
         )
     }
+
     return (
         <div className="container">
             <div className="category_name">{detail.name}</div>
-            {data.topics.map((info: Topic) => (
-                <TopicCard key={info.topic_id} title={info.title} summary={info.summary} title_img={info.title_img}
-                           topic_id={info.topic_id}/>
-            ))}
-            <Paging page={page} count={data.topics.length} setPage={changePage}></Paging>
+            {createTopicCard(page, data.topics)}
+            <Paging page={page} count={data.topics.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging>
         </div>
     )
 }
