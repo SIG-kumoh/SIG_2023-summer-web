@@ -25,6 +25,7 @@
 .detail_card .topic_summary_content {
     margin-top: 0.5rem;
     font-size: 1.2rem;
+    line-height: 1.8rem;
 }
 .detail_card .news_container {
     margin-top: 2rem;

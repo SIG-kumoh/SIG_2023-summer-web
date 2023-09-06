@@ -17,7 +17,7 @@ const dummyTopic:Topic = {
 export default function TopicPage() {
     const {cur} = usePageStore()
     const detail:Detail = Categories[cur]
-    const reqURL = BaseURL + "/topic" + detail.toServer + '?t_date=2023-08-14'
+    const reqURL = BaseURL + "/topic" + detail.toServer
     const {data, isLoading, isError} =
         useQuery(['topic', detail.name], () => GetServerData(reqURL))
     const [page, setPage] = useState<number>( 1)
@@ -41,7 +41,7 @@ export default function TopicPage() {
     useEffect(() => {
         setPage(1)
     }, [location]);
-
+    console.log(reqURL)
     if (isLoading || isError) {
         return(
             <div className="container">
@@ -50,7 +50,6 @@ export default function TopicPage() {
             </div>
         )
     }
-
     return (
         <div className="container">
             <div className="category_name">{detail.name}</div>
