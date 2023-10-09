@@ -41,3 +41,21 @@
 .detail_card .news_container .news .news_title:hover {
     text-decoration: underline;
 }
+
+@media (width < 768px) {
+    .detail_card .topic_title {
+        font-size: 1.4rem;
+    }
+    .detail_card .topic_summary {
+        font-size: 1.2rem;
+    }
+    .detail_card .topic_summary_content {
+        font-size: 1rem;
+    }
+    .detail_card .news_container {
+        font-size: 1.2rem;
+    }
+    .detail_card .news_container .news {
+        font-size: 1rem;
+    }
+}

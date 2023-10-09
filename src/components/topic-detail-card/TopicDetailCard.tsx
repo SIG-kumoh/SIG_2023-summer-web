@@ -1,4 +1,4 @@
-import GetServerData, {BaseURL, Topic, News} from "../../config";
+import GetServerData, {BaseURL, Topic, News} from "../../config/config";
 import {Link, useParams} from "react-router-dom";
 import {useQuery} from "react-query";
 import './TopicDetailCard.css'

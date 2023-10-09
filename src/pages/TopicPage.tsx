@@ -1,4 +1,4 @@
-import GetServerData, {BaseURL, Categories, Detail, Topic} from "../config";
+import GetServerData, {BaseURL, Categories, Detail, Topic} from "../config/config";
 import TopicCard from "../components/topic-card/TopicCard";
 import {useQuery} from 'react-query';
 import {usePageStore} from "../store";
@@ -19,7 +19,7 @@ export default function TopicPage() {
     const detail:Detail = Categories[cur]
     const reqURL = BaseURL + "/topic" + detail.toServer
     const {data, isLoading, isError} =
-        useQuery(['topic', detail.name], () => GetServerData(reqURL))
+        useQuery(['topic', detail.name], () => GetServerData(reqURL + "/?t_date=2023-08-08"))
     const [page, setPage] = useState<number>( 1)
     const changePage = useCallback((page:number) => setPage(page), [])
     const location = useLocation()

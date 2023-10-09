@@ -1,7 +1,6 @@
 .header_top {
     background-color: var(--maincolor);
     position: relative;
-    height: 3.2rem;
 }
 .header_top .top_inner {
     max-width: 1110px;
@@ -11,12 +10,17 @@
     line-height: 3.2rem;
     justify-content: space-between;
 }
-.header_top .top_inner .top_inner_right {
-    font-size: 0.9rem;
-    margin-right: 10px;
-}
 .header_top .top_inner .top_inner_left {
-    font-size: 1.6rem;
-    margin-left: 10px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin: 1rem 0 1rem 0;
     color: #ffffff;
+}
+.header_top .top_inner .top_inner_right {
+    font-size: 1rem;
+    margin: 1rem 0 1rem 1rem;
+    padding: 0 1rem 0 1rem;
+    background-color: var(--palette4);
+    border: #ffffff 1px solid;
+    border-radius: 20px;
 }

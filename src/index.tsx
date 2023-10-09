@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import Header from "./components/header/Header";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import TopicPage from "./pages/TopicPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import TopicDetailPage from "./pages/TopicDetailPage";
+import LoginPage from "./pages/LoginPage";
 
 const queryClient = new QueryClient(
     {
@@ -30,6 +31,7 @@ root.render(
                       <Route path="/" element={<TopicPage/>}/>
                       <Route path="/:categoryIdx" element={<TopicPage/>}/>
                       <Route path="/topic-page/:topicId" element={<TopicDetailPage/>}/>
+                      <Route path="/login" element={<LoginPage/>}/>
                   </Routes>
               </div>
           </BrowserRouter>

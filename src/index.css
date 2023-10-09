@@ -5,7 +5,11 @@
     box-sizing: border-box;
 }
 :root {
-    --maincolor: #3f63bf;
+    --maincolor: #293241;
+    --palette1: #3D5A80;
+    --palette2: #98C1D9;
+    --palette3: #E0FBFC;
+    --palette4: #EE6C4D;
 }
 body {
     min-height: 100vh;
@@ -35,9 +39,20 @@ ul {
 .container {
     max-width: 1060px;
     margin: 0 auto;
+    padding: 1rem;
     padding-top: 2rem;
+    z-index: 1;
 }
 .container .category_name {
     margin-bottom: 2rem;
     font-size: 1.6rem;
+}
+.login_container {
+    background-color: #f4f6f8;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
 }

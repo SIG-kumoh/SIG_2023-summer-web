@@ -1,0 +1,51 @@
+@import "./../../config/_color.scss";
+
+.login_box {
+  margin: auto;
+  background-color: $dark-clay;
+  border-radius: 20px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: #ffffff;
+
+  .login_inner {
+    width: 70%;
+    margin: 1rem;
+
+    .login_title {
+      margin: 1rem auto;
+      font-size: 2.5rem;
+      font-weight: bolder;
+    }
+
+    .login_input_container {
+      border: #ffffff solid 1px;
+      border-radius: 10px;
+      margin: 4rem 0;
+
+      .hor_line {
+        border-bottom: 1px #eee0e0 solid;
+      }
+
+      .login_icon {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .login_button {
+      background-color: $light-warm-red;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      border-radius: 20px;
+    }
+
+    .sign_up_button {
+      text-align: right;
+      margin-bottom: 1rem;
+    }
+  }
+}

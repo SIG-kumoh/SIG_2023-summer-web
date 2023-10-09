@@ -24,3 +24,14 @@
 .card_body_right .topic_title:hover {
     text-decoration: underline;
 }
+
+@media (width < 768px) {
+    .card_body_left {
+        width: 35%;
+        margin-right: 0;
+    }
+    .card_body_right{
+        width: 65%;
+        font-size: 1rem;
+    }
+}
