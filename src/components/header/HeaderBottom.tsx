@@ -1,4 +1,3 @@
-import "./HeaderBottom.css"
 import React from "react";
 import {Link} from "react-router-dom";
 import {Categories, Detail} from "../../config/config";
