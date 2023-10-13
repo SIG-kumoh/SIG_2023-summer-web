@@ -1,11 +1,13 @@
-@import url(../config/_color.scss);
-@import url(../utils/_util.scss);
+@import "../config/_color.scss";
+@import "../utils/_util.scss";
 
 .header{
   position: relative;
 
   .header_top {
-    background-color: $dark-clay;
+    background-color: #{
+      $dark-clay
+    };
     position: relative;
 
     .top_inner {

@@ -1,4 +1,4 @@
-import {create} from 'zus  tand'
+import {create} from 'zustand'
 import {createJSONStorage, persist} from "zustand/middleware";
 
 export const usePageStore = create<any>(

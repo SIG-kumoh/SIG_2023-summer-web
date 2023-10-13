@@ -1,10 +1,11 @@
-@import url(./components/_login.scss);
-@import url(./components/_topic_card.scss);
-@import url(./components/_topic_detail_card.scss);
+@import "./config/_color.scss";
+@import "./config/_reset.scss";
 
-@import url(./page/_login_page.scss);
+@import "./utils/_util.scss";
 
-@import url(./config/_color.scss);
-@import url(./config/_reset.scss);
+@import "./components/_login.scss";
+@import "./components/_topic_card.scss";
+@import "./components/_topic_detail_card.scss";
+@import "./components/_header.scss";
 
-@import url(./utils/_util.scss);
+@import "./page/_login_page.scss";

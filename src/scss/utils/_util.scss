@@ -1,7 +1,7 @@
 $mobile: 768px;
 
 @mixin mobile {
-  @media (width < $mobile) {
+  @media (max-width: $mobile) {
     @content
   }
 }
