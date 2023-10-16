@@ -35,7 +35,7 @@ export default function Login() {
                         로그인
                     </button>
                 </form>
-                <Link to={"/user-manage"}>
+                <Link to={"/user/sign-up"}>
                     <div className="sign_up_button">
                         회원가입
                     </div>

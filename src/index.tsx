@@ -8,7 +8,7 @@ import TopicPage from "./pages/TopicPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import TopicDetailPage from "./pages/TopicDetailPage";
 import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
+import UserManagePage from "./pages/UserManagePage";
 
 const queryClient = new QueryClient(
     {
@@ -33,7 +33,7 @@ root.render(
                       <Route path="/:categoryIdx" element={<TopicPage/>}/>
                       <Route path="/topic-page/:topicId" element={<TopicDetailPage/>}/>
                       <Route path="/login" element={<LoginPage/>}/>
-                      <Route path="/sign-up" element={<SignUpPage/>}/>
+                      <Route path="/user/:state" element={<UserManagePage/>}/>
                   </Routes>
               </div>
           </BrowserRouter>
