@@ -41,7 +41,6 @@ export default function TopicPage() {
     useEffect(() => {
         setPage(1)
     }, [location]);
-    console.log(reqURL)
     if (isLoading || isError) {
         return(
             <div className="container">
