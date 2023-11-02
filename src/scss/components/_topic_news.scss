@@ -1,0 +1,39 @@
+.news_container {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+
+
+
+  .news {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
+
+    .news_card {
+      display: flex;
+
+      .news_text_box {
+        margin-left: 1rem;
+        .news_title {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .news_text {
+          margin-top: 1rem;
+          font-size: 1rem;
+        }
+
+        .news_date {
+          margin-top: 1rem;
+          font-size: 0.8rem;
+          color: #cccccc;
+        }
+      }
+    }
+  }
+}

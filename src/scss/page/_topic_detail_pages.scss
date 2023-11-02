@@ -1,0 +1,13 @@
+.topic_detail_under {
+  display: flex;
+
+  .topic_detail_left {
+    width: 65%;
+  }
+
+  .topic_detail_right {
+    padding-left: 1rem;
+    width: 35%;
+  }
+
+}

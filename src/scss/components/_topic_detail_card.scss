@@ -2,20 +2,13 @@
 @import "../utils/_util.scss";
 
 .detail_card {
-  background-color: #ffffff;
+  display: flex;
   margin: 0 auto;
-  padding: 2rem;
-
-  .topic_title {
-    font-size: 2rem;
-    text-align: center;
-    padding: 1.5rem 0;
-    font-weight: bold ;
-  }
+  padding-top: 2rem;
 
   .topic_img_container {
     margin: 0 auto;
-    width: 70%;
+    width: 30%;
 
     .topic_img {
       object-fit: scale-down;
@@ -24,28 +17,20 @@
     }
   }
 
-  .topic_summary_content {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-  }
-
-  .news_container {
-    margin-top: 2rem;
-    font-size: 1.5rem;
-
-    .news_title {
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
+  .topic_text {
+    width: 63%;
+    .topic_title {
+      font-size: 1.5rem;
+      font-weight: bold ;
     }
 
-    .news {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
+    .topic_summary_content {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8rem;
     }
   }
+
 
   @include mobile {
     .topic_title {

@@ -21,5 +21,5 @@ export default async function GetServerData(url:string) {
 }
 
 export interface News {
-    title:string, url:string
+    title:string, url:string, text:string, img_url:string, date:string
 }
