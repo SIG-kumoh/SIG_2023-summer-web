@@ -5,6 +5,7 @@ import {usePageStore} from "../store";
 import React, {useCallback, useEffect, useState} from "react";
 import Paging from "../components/page/Paging";
 import {useLocation} from "react-router-dom";
+import BubbleChart from "../components/bubble-chart/BubbleChart";
 
 const dummyTopic:Topic = {
     title: "서버로부터 응답이 없습니다",
@@ -45,6 +46,7 @@ export default function TopicPage() {
     if (isLoading || isError) {
         return(
             <div className="container">
+                <BubbleChart/>
                 <div className="category_name">{detail.name}</div>
                 {TopicCard(dummyTopic)}
             </div>
