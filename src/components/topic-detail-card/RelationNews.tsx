@@ -12,9 +12,8 @@ export default function RelationNews () {
     return(
         <div className="relation_box">
             연관뉴스
-            <br/>
             <div className="relation_news">
-                <img src={exampleNews.img_url}/>
+                <img className="relation_img" src={exampleNews.img_url}/>
                 <div>{exampleNews.title}</div>
             </div>
         </div>

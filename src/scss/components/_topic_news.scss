@@ -1,20 +1,29 @@
+@import "../config/color.scss";
+
 .news_container {
-  margin-top: 2rem;
   font-size: 1.5rem;
-
-
 
   .news {
     font-size: 1.2rem;
     margin-top: 0.5rem;
     background-color: #ffffff;
     padding: 1rem;
+    border-radius: 25px;
+    border: 0.5px solid $dark-clay;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+    img {
+      width: 30%;
+    }
 
     .news_card {
       display: flex;
+      justify-content: space-between;
 
       .news_text_box {
         margin-left: 1rem;
+        width: 70%;
         .news_title {
           cursor: pointer;
 
@@ -37,3 +46,4 @@
     }
   }
 }
+
