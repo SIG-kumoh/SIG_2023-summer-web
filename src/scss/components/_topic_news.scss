@@ -21,15 +21,17 @@
       display: flex;
       justify-content: space-between;
 
+      &:hover {
+        .news_title {
+          text-decoration: underline;
+        }
+      }
       .news_text_box {
         margin-left: 1rem;
         width: 70%;
         .news_title {
           cursor: pointer;
 
-          &:hover {
-            text-decoration: underline;
-          }
         }
 
         .news_text {
