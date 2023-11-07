@@ -9,7 +9,7 @@ export default function HeaderBottom() {
         <div className="header_bottom">
             <div className="header_bottom_inner">
                 {category.map((data, index) =>
-                    <Card key={index} url={data.url} name={data.name} idx={data.idx} toServer={data.toServer}/>
+                    <Card key={index} url={data.url} name={data.name} idx={data.idx} section_id={data.section_id}/>
                 )}
             </div>
         </div>
