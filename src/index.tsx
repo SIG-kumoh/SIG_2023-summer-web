@@ -9,6 +9,7 @@ import {QueryClient, QueryClientProvider} from "react-query";
 import TopicDetailPage from "./pages/TopicDetailPage";
 import LoginPage from "./pages/LoginPage";
 import UserManagePage from "./pages/UserManagePage";
+import MainPage from "./pages/MainPage";
 
 const queryClient = new QueryClient(
     {
@@ -29,7 +30,7 @@ root.render(
               <Header/>
               <div className="background">
                   <Routes>
-                      <Route path="/" element={<TopicPage/>}/>
+                      <Route path="/" element={<MainPage/>}/>
                       <Route path="/:categoryIdx" element={<TopicPage/>}/>
                       <Route path="/topic-page/:topicId" element={<TopicDetailPage/>}/>
                       <Route path="/login" element={<LoginPage/>}/>
