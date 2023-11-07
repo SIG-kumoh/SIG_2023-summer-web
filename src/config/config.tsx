@@ -27,5 +27,9 @@ export interface News {
 export function GetTodayDate() {
     let today = new Date()
     //return today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate()
-    return "2023-10-21"
+    return "2023-10-24"
+}
+
+export interface User {
+    id:string, pw:string, imgUrl:string, nickname:string
 }

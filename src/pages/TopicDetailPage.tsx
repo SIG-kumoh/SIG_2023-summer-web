@@ -9,7 +9,6 @@ import {useQuery} from "react-query";
 export default function TopicDetailPage() {
     const topic_id = useParams()
     const reqURL = BaseURL + "/news/cluster?cid=" + topic_id.topicId
-    console.log(reqURL)
     const {data, isLoading, isError} = useQuery([topic_id], () => GetServerData(reqURL))
     if (isLoading || isError) {
         return(
