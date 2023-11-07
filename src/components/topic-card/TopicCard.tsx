@@ -9,9 +9,12 @@ export default function TopicCard(topic:Topic) {
                     <img className="card_body_img" src={topic.imgUrl} alt="이미지 없음" />
                 </div>
                 <div className="card_body_right">
-                    <span className="topic_title">
+                    <div className="topic_title">
                         {topic.title}
-                    </span>
+                    </div>
+                    <div className="topic_summary">
+                        {topic.summary}
+                    </div>
                 </div>
             </div>
         </Link>

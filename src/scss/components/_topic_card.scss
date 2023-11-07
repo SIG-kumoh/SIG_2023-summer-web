@@ -6,6 +6,7 @@
   display: flex;
   height: 10rem;
   border-bottom: 4px solid #f4f6f8;
+  border-radius: 15px;
 
   .card_body_left {
     text-align: center;
@@ -27,6 +28,12 @@
 
     & .topic_title:hover {
       text-decoration: underline;
+    }
+
+    .topic_summary {
+      margin: 1rem 2rem 0 0;
+      font-size: 1rem;
+      color: #666666;
     }
   }
 

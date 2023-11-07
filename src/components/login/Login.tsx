@@ -1,17 +1,44 @@
 import {BiUser} from "react-icons/bi";
 import {AiFillLock} from "react-icons/ai";
-import {Link} from "react-router-dom";
-import {usePageStore} from "../../store";
+import {Link, useNavigate} from "react-router-dom";
+import {loginStore, usePageStore,} from "../../store";
 import React, {useState} from "react";
+import {useMutation} from "react-query";
+import {BaseURL} from "../../config/config";
+
+interface LoginProps {
+    BaseURL: boolean
+}
+
+async function login(id: string, pw: string) {
+    await fetch(BaseURL + "/auth/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({'username':id, 'password': pw})
+    })
+}
 
 export default function Login() {
     const {setCur} = usePageStore();
+    const {isLoggedIn, setIsLoggedIn} = loginStore()
+    const navigate = useNavigate()
     const [id, setId] = useState<string>("")
     const [pw, setPw] = useState<string>("")
+    const {mutate, isSuccess, isLoading, isError} = useMutation(['login'],() => login(id,pw))
+
 
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
+        mutate()
+        if (isError) {
+            alert("로그인에 실패하였습니다.")
+        } else if (isSuccess) {
+            setIsLoggedIn(true)
+            //navigate("/")
+            window.location.href = "/"
+        }
     }
     return(
         <div className="login_box">

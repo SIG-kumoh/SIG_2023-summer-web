@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import {useEffect, useRef} from "react";
 import {BaseURL, GetServerData, GetTodayDate, News, Topic} from "../../config/config";
 import {useQuery} from "react-query";
+import {useNavigate} from "react-router-dom";
 
 //https://gist.github.com/officeofjane/a70f4b44013d06b9c0a973f163d8ab7a
 //https://codepen.io/Jackfiallos/pen/jLWrjb
@@ -43,6 +44,7 @@ function makeTextArray(text:string) {
 }
 
 export default function BubbleChart() {
+    const navigate = useNavigate()
     const reqURL = BaseURL + "/news/hottopic?date=" + GetTodayDate()
     const {data, isLoading, isError} = useQuery(['hottopic'], () => GetServerData(reqURL))
     const center = { x: width / 2, y: height / 2 }
@@ -98,7 +100,8 @@ export default function BubbleChart() {
                 d3.select(this).style("cursor", "pointer");
             })
             .on('click', (event, d) => {
-                window.location.href = "/topic-page/" + event.clusterId
+                //window.location.href = "/topic-page/" + event.clusterId
+                navigate("/topic-page/" + event.clusterId)
             })
 
         const bubbles = elements

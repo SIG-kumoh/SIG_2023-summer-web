@@ -16,8 +16,10 @@ export const loginStore = create<any>(
     persist(
         (set) => ({
                 isLoggedIn: false,
-                nickname: "",
-                setIsLoggedIn: (newIsLoggedIn:boolean) => set({isLoggedIn: newIsLoggedIn}),
+                nickname: "test1",
+                setIsLoggedIn: (newIsLoggedIn:boolean) => (
+                    set({isLoggedIn: newIsLoggedIn})
+                ),
             }),
         { name: "store.tsx", storage: createJSONStorage(() => sessionStorage)})
 )
