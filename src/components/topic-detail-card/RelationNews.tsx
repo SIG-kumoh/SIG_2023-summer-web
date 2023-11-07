@@ -5,7 +5,8 @@ const exampleNews:News = {
     imgUrl:"/img/오늘의 뉴스.png",
     regdate:"",
     url:"",
-    press:""
+    press:"",
+    content:""
 }
 
 export default function RelationNews () {
