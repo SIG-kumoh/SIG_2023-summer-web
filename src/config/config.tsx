@@ -33,3 +33,12 @@ export function GetTodayDate() {
 export interface User {
     id:string, pw:string, imgUrl:string, nickname:string
 }
+
+export interface Weather {
+    fcstTime: string,
+    temperature: number,
+    minTemperature: number,
+    maxTemperature: number,
+    rainPercent: number,
+    weatherStatus: string
+}
