@@ -37,8 +37,6 @@ export interface User {
 export interface Weather {
     fcstTime: string,
     temperature: number,
-    minTemperature: number,
-    maxTemperature: number,
     rainPercent: number,
     weatherStatus: string
 }
