@@ -29,7 +29,6 @@ root.render(
       <QueryClientProvider client={queryClient}>
           <BrowserRouter>
               <Header/>
-              <WeatherWidget/>
               <div className="background">
                   <Routes>
                       <Route path="/" element={<MainPage/>}/>

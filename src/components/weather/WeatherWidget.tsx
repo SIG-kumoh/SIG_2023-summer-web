@@ -1,11 +1,13 @@
 import {Weather} from "../../config/config";
+import {useQuery} from "react-query";
 
 export default function WeatherWidget() {
     // TODO 스타일 적용
     // TODO 요청 비동기화
     // TODO rainPercent 이용하여 일정 확률 이상이면 비오는 날씨로 취급
     // TODO 날씨별 이미지 추가
-    const response = getWeatherData().response.body.items.item
+    let today = new Date()
+    const response = getWeatherData(today).response.body.items.item
     const weatherData: Array<Weather> = []
     let fcstTime: string = "";
     let temperature: number = 0;
@@ -41,13 +43,19 @@ export default function WeatherWidget() {
     //console.log(weatherData)
 
     return(
-        <div>
-            {weatherData[0].weatherStatus} {weatherData[0].rainPercent}%
-            <div>
-                {minTemperature} / {maxTemperature}
+        <div className="weather_container">
+            <div className="date_info">
+                {today.getMonth()}월 {today.getDay()}일 경북 구미시
             </div>
-            <div>
-                {createFcstValue(weatherData)}
+            <div className="weather_info">
+                <div></div>
+                {weatherData[0].weatherStatus} {weatherData[0].rainPercent}
+                <div>
+                    {minTemperature} / {maxTemperature} °C
+                </div>
+                {/*<div>
+                    {createFcstValue(weatherData)}
+                </div>*/}
             </div>
         </div>
     )
@@ -103,8 +111,7 @@ function hourSelector(hour: number) {
     }
 }
 
-function getWeatherData() {
-    const today: Date = new Date();
+function getWeatherData(today : Date) {
 
     const year: number = today.getFullYear();
     const month: number = today.getMonth() + 1;
