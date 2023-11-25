@@ -38,5 +38,6 @@ export interface Weather {
     fcstTime: string,
     temperature: number,
     rainPercent: number,
-    weatherStatus: string
+    weatherStatus: string,
+    rainStatus: string
 }

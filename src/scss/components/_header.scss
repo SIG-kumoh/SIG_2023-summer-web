@@ -78,14 +78,47 @@
         }
       }
 
-      .weather_container {
-        display: flex;
+      .weather_widget {
+        .weather_container {
+          border: 2px solid $dark-clay;
+          .date_info {
+            text-align: center;
+          }
 
-        .weather_info {
-          display: flex;
+          .weather_info {
+            display: flex;
+            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+
+            .temperature {
+              font-size: 2rem;
+            }
+          }
+
+          .fcst {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed $dark-clay;
+
+            .main_info {
+              display: flex;
+              flex-direction: column;
+            }
+
+            .temperature {
+              font-size: 1rem;
+              text-align: center;
+            }
+
+            .fcst_time {
+              font-size: 1rem;
+              text-align: center;
+            }
+          }
         }
       }
-
     }
 
     @include mobile {
