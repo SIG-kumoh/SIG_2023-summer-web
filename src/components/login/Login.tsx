@@ -26,19 +26,17 @@ export default function Login() {
     const navigate = useNavigate()
     const [id, setId] = useState<string>("")
     const [pw, setPw] = useState<string>("")
-    const {mutate, isSuccess, isLoading, isError} = useMutation(['login'],() => login(id,pw))
 
 
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        mutate()
-        if (isError) {
-            alert("로그인에 실패하였습니다.")
-        } else if (isSuccess) {
-            setIsLoggedIn(true)
-            //navigate("/")
-            window.location.href = "/"
-        }
+        fetch(BaseURL + "/auth/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'username':id, 'password': pw})
+        }).then(res => res.ok).then(res => navigate("/"))
     }
     return(
         <div className="login_box">
