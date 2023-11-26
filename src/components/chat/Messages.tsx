@@ -1,5 +1,4 @@
 import {Message} from "../../config/config";
-import {useEffect} from "react";
 
 interface MessagesProp {
     messages:Array<Message>
@@ -7,9 +6,6 @@ interface MessagesProp {
 
 export default function Messages(prop:MessagesProp) {
     let messages:Array<Message> = prop.messages
-    useEffect(() => {
-        console.log(messages)
-    }, [messages]);
     return(
         <div>
             {messages.map((m, i) => {

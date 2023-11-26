@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {io} from "socket.io-client";
+import {Socket, io} from "socket.io-client";
 import ChatInfo from "./ChatInfo";
 import {loginStore} from "../../store";
 import {Message} from "../../config/config";
@@ -10,38 +10,46 @@ interface ChatProps {
 }
 export default function Chat(prop:ChatProps) {
     let socket_number:number = prop.socket_number
-    let socket:any = null
     const url = ''
     const {nickname} = loginStore()
     const [message, setMessage] = useState<string>()
     const [messages, setMessages] = useState<Array<Message>>([])
+    const [socket, setSocket] = useState<Socket | null>(null)
 
     useEffect(() => {
-        socket = io(url);
-        socket.emit('join', {nickname, socket_number}, (err:Error) => {
+        const socketInstance = io(url)
+        setSocket(socketInstance)
+
+        socketInstance.emit('join', {nickname, socket_number}, (err:Error) => {
             if (err) {
                 alert(err);
             }
         });
         return () => {
-            socket.emit('disconnect');
-            socket.off();
+            socketInstance.disconnect()
         }
-    }, [url, window.location.search]);
+    }, [url, socket_number]);
 
     useEffect(() => {
-        socket.on('message', (message:Message) => {
-            setMessages([...messages, message]);
-        });
-    }, []);
-
-    const sendMessage = (event:React.KeyboardEvent | React.MouseEvent) => {
-        event.preventDefault();
-        if (message) {
-            socket.emit('sendMessage', message, () => setMessage(''));
+        if (socket) {
+            socket.on("message", (message: Message) => {
+                setMessages((prevMessages) => [...prevMessages, message]);
+            });
         }
-    }
 
+        return () => {
+            if (socket) {
+                socket.off("message");
+            }
+        };
+    }, [socket]);
+
+    const sendMessage = (event: React.KeyboardEvent | React.MouseEvent) => {
+        event.preventDefault();
+        if (message && socket) {
+            socket.emit("sendMessage", message, () => setMessage(""));
+        }
+    };
 
     return (
         <div className='outerContainer'>
@@ -63,6 +71,3 @@ export default function Chat(prop:ChatProps) {
         </div>
     );
 }
-
-
-
