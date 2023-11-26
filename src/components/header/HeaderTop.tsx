@@ -5,6 +5,7 @@ export default function HeaderTop() {
     const {setCur} = usePageStore();
     const {isLoggedIn, nickname} = usePageStore()
     let today:Date = new Date()
+    const week:Array<string> = ['일', '월', '화', '수', '목', '금', '토']
     return (
         <div className="header_top">
             <div className="top_inner">
@@ -13,7 +14,7 @@ export default function HeaderTop() {
                         <div className="main_title">오늘의 뉴스</div>
                     </Link>
                     <div className="main_date">
-                        {today.getMonth() + 1}월 {today.getDate()}월
+                        {today.getMonth() + 1}월 {today.getDate()}월 {week[today.getDay()]}요일
                     </div>
                 </div>
                 {MakeRight(isLoggedIn, nickname)}

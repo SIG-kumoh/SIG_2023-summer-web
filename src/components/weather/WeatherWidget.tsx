@@ -117,7 +117,7 @@ function createFcstValue(weatherData: Array<Weather>) {
                     {weatherData[i].temperature} °C
                 </div>
                 <div className="fcst_time">
-                    {weatherData[i].fcstTime.substring(0, 2)}
+                    {weatherData[i].fcstTime.substring(0, 2)} 시
                 </div>
             </div>
         )
