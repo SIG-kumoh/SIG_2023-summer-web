@@ -1,11 +1,38 @@
 import {Weather} from "../../config/config";
-import {useQuery} from "react-query";
+import {useEffect, useState} from "react";
+
+interface ApiResponse {
+    response: {
+        body: {
+            items: {
+                item: Array<any>;
+            };
+        };
+    };
+}
 
 export default function WeatherWidget() {
+    const [resBody, setResBody] = useState<Array<any>>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [click, setClick] = useState<boolean>(true)
+    useEffect(() => {
+        const fetchWeatherData = async () => {
+            try {
+                const today = new Date();
+                const response = await getWeatherData(today);
+                const data: Array<any> = response.response.body.items.item;
+                setResBody(data);
+                setLoading(false);
+            } catch (error) {
+                setError('Failed to fetch weather data');
+                setLoading(false);
+            }
+        };
+
+        fetchWeatherData();
+    }, []);
     // TODO 요청 비동기화
-    let today = new Date()
-    const response = getWeatherData(today).response.body.items.item
-    const weatherData: Array<Weather> = []
     let fcstTime: string = "";
     let temperature: number = 0;
     let minTemperature: number = 10000;
@@ -14,8 +41,17 @@ export default function WeatherWidget() {
     let weatherStatus: string = "";
     let rainStatus:string = "";
 
-    for (let i = 0; i < response.length && response[i].baseDate === response[i].fcstDate; i++) {
-        const e: any = response[i];
+    if (loading) {
+        return <div>로딩중...</div>; // 데이터 로딩 중인 동안 표시할 내용
+    }
+
+    if (error) {
+        return <div>날씨 정보를 받아올 수 없습니다.</div>; // 데이터 로딩 중 에러가 발생한 경우 표시할 내용
+    }
+    const weatherData:Array<Weather> = []
+    //console.log(weatherData)
+    for (let i = 0; i < resBody.length && resBody[i].baseDate === resBody[i].fcstDate; i++) {
+        const e: any = resBody[i];
 
         if (i !== 0 && i % 12 === 0) {
             weatherData.push({
@@ -41,21 +77,18 @@ export default function WeatherWidget() {
         }
     }
 
-    //console.log(weatherData)
-
+    function onClick(e:React.MouseEvent) {
+        setClick(!click)
+    }
     return(
-        <div className="weather_widget">
+        <div onClick={(e) => {onClick(e)}} className="weather_widget">
             <div className="weather_container">
-                <div className="date_info">
-                    {today.getMonth() + 1}월 {today.getDate()}일 경북 구미시
+                <div className="simple_weather_info">
+                    <div className="locate_info">경북 구미시</div>
+                    <img className="weather_icon" src={imageSelector(weatherData[0])} alt=""/>
+                    <div className="temperature">{weatherData[0].temperature} °C</div>
                 </div>
-                <div className="weather_info">
-                    <div className="main_info">
-                        <img className="weather_icon" src={imageSelector(weatherData[0])} alt=""/>
-                        <div className="temperature">
-                            {weatherData[0].temperature} °C
-                        </div>
-                    </div>
+                <div className={click ? "weather_info hide" : "weather_info"}>
                     <div className="sub_info">
                         <div className="rainPercent">
                             강수확률 : {weatherData[0].rainPercent}%{weatherData[0].rainPercent > 50 && weatherData[0].rainStatus !== "없음" ? "(" + weatherData[0].rainStatus + ")" : ""}
@@ -64,9 +97,9 @@ export default function WeatherWidget() {
                             최저 : {minTemperature} / 최고 : {maxTemperature} °C
                         </div>
                     </div>
-                </div>
-                <div className="fcst">
-                    {createFcstValue(weatherData)}
+                    <div className="fcst">
+                        {createFcstValue(weatherData)}
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,14 +173,6 @@ function imageSelector(weather: Weather) {
             return "/img/흐림.png"
         }
     }
-
-
-    /*
-    rainPercent: rainPercent,
-                weatherStatus: weatherStatus,
-                rainStatus: rainStatus
-     */
-    return "/img/맑음.png"
 }
 
 function hourSelector(hour: number) {
@@ -170,7 +195,7 @@ function hourSelector(hour: number) {
     }
 }
 
-function getWeatherData(today : Date) {
+async function getWeatherData(today : Date) :Promise<ApiResponse> {
 
     const year: number = today.getFullYear();
     const month: number = today.getMonth() + 1;
@@ -180,19 +205,20 @@ function getWeatherData(today : Date) {
     const formattedDay: string = day < 10 ? '0' + day : '' + day;
 
     const targetDate: string = year + formattedMonth + formattedDay;
+    const baseTime: string = hourSelector(today.getHours());
 
-    const xhr = new XMLHttpRequest();
-    const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
-    let queryParams = '?' + encodeURIComponent('serviceKey') + '='+''; /*Service Key*/
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1000'); /**/
-    queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /**/
-    queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(targetDate); /**/
-    queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent(hourSelector(today.getHours())); /**/
-    queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('84'); /**/
-    queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('96'); /**/
-    xhr.open('GET', url + queryParams, false);
-    xhr.send('');
+    const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
+    const queryParams = new URLSearchParams({
+        serviceKey: '', //service key here
+        pageNo: '1',
+        numOfRows: '1000',
+        dataType: 'JSON',
+        base_date: targetDate,
+        base_time: baseTime,
+        nx: '84',
+        ny: '96',
+    });
+    const data = await fetch(`${url}?${queryParams}`).then((res) => res.json());
 
-    return JSON.parse(xhr.response)
+    return data
 }

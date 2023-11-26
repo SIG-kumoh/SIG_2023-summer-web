@@ -18,11 +18,21 @@
       line-height: 3.2rem;
       justify-content: space-between;
 
+
       .top_inner_left {
-        font-size: 2.5rem;
-        font-weight: bolder;
-        margin: 1rem 0 1rem 0;
-        color: #ffffff;
+        display: flex;
+        .main_title {
+          font-size: 2.5rem;
+          font-weight: bolder;
+          margin: 1rem 0 1rem 0;
+          color: #ffffff;
+        }
+        .main_date{
+          margin-left: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
       }
       .top_right {
         display: flex;
@@ -79,20 +89,34 @@
       }
 
       .weather_widget {
+        cursor: pointer;
+        width: 20%;
+        .hide {
+          display: none;
+        }
+        .weather_icon {
+          width:2rem;
+        }
         .weather_container {
-          border: 2px solid $dark-clay;
-          .date_info {
+          background-color: #ffffff;
+          padding: 0 0.5rem 0 0.5rem;
+
+          .simple_weather_info {
+            display: flex;
             text-align: center;
+            justify-content: space-evenly;
           }
 
           .weather_info {
-            display: flex;
             text-align: center;
-            justify-content: space-between;
             align-items: center;
 
+            .sub_info {
+              line-height: 2rem;
+            }
+
             .temperature {
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
           }
 
@@ -101,6 +125,7 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px dashed $dark-clay;
+            line-height: 2rem;
 
             .main_info {
               display: flex;
@@ -108,12 +133,13 @@
             }
 
             .temperature {
-              font-size: 1rem;
+              font-size: 0.9rem;
               text-align: center;
             }
 
             .fcst_time {
-              font-size: 1rem;
+              line-height: 1.5rem;
+              font-size: 0.9rem;
               text-align: center;
             }
           }

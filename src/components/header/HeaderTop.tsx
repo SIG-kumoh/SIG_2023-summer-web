@@ -4,12 +4,18 @@ import {usePageStore} from "../../store";
 export default function HeaderTop() {
     const {setCur} = usePageStore();
     const {isLoggedIn, nickname} = usePageStore()
+    let today:Date = new Date()
     return (
         <div className="header_top">
             <div className="top_inner">
-                <Link to={"/"} onClick={() => setCur(0)}>
-                    <div className="top_inner_left">오늘의 뉴스</div>
-                </Link>
+                <div className="top_inner_left">
+                    <Link to={"/"} onClick={() => setCur(0)}>
+                        <div className="main_title">오늘의 뉴스</div>
+                    </Link>
+                    <div className="main_date">
+                        {today.getMonth() + 1}월 {today.getDate()}월
+                    </div>
+                </div>
                 {MakeRight(isLoggedIn, nickname)}
             </div>
         </div>
