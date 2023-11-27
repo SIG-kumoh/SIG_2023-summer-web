@@ -41,12 +41,12 @@ export default function RoadMap(curClusters: Topic, relatedClusters: Array<Topic
         target: number
     }
 
-    function makeNodes(curClusters: Topic, relatedClusters: Array<Topic>): [Array<Node>, Array<Link>] {
+    function makeNodes(curCluster: Topic, relatedClusters: Array<Topic>): [Array<Node>, Array<Link>] {
         const nodes: Array<Node> = []
         const links: Array<Link> = []
 
-        nodes.push({id: curClusters.clusterId, title: curClusters.title, x: 0, y: 0, root: true})
-        links.push({source: curClusters.clusterId, target: curClusters.relatedClusterId})
+        nodes.push({id: curCluster.clusterId, title: curCluster.title, x: 0, y: 0, root: true})
+        links.push({source: curCluster.clusterId, target: curCluster.relatedClusterId})
 
         relatedClusters.forEach((e: Topic) => {
             nodes.push({id: e.clusterId, title: e.title, x: 0, y: 0, root: false})
