@@ -10,6 +10,7 @@ import TopicDetailPage from "./pages/TopicDetailPage";
 import LoginPage from "./pages/LoginPage";
 import UserManagePage from "./pages/UserManagePage";
 import MainPage from "./pages/MainPage";
+import WeatherWidget from "./components/weather/WeatherWidget";
 
 const queryClient = new QueryClient(
     {
