@@ -20,6 +20,14 @@ export async function GetServerData(url:string) {
     return topicData.json()
 }
 
+export async function GetServerDataWithAuthorization(url:string, authorization:string) {
+    return await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `${authorization}`
+        }
+    }).then(res => res.json())
+}
 export interface News {
     title:string, url:string, imgUrl:string, press:string, regdate:string, content:string
 }
@@ -36,6 +44,16 @@ export interface User {
     id:string, pw:string, imgUrl:string, nickname:string
 }
 
+
 export interface Message {
     nickname:string, text:string
 }
+
+export interface Weather {
+    fcstTime: string,
+    temperature: number,
+    rainPercent: number,
+    weatherStatus: string,
+    rainStatus: string
+}
+
