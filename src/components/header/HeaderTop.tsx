@@ -3,7 +3,7 @@ import {usePageStore} from "../../store";
 
 export default function HeaderTop() {
     const {setCur} = usePageStore();
-    const {isLoggedIn, nickname} = usePageStore()
+    const {isLoggedIn, nickname, authorization} = usePageStore()
     let today:Date = new Date()
     const week:Array<string> = ['일', '월', '화', '수', '목', '금', '토']
     return (

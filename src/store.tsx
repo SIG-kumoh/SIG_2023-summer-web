@@ -7,8 +7,7 @@ export const usePageStore = create<any>(
             cur: 0,
             setCur: (newCur:number) => set({cur: newCur}),
         }),
-        { name: "store.tsx",
-        storage: createJSONStorage(() => sessionStorage)}
+        { name: "store.tsx", storage: createJSONStorage(() => sessionStorage)}
     )
 )
 
@@ -17,9 +16,13 @@ export const loginStore = create<any>(
         (set) => ({
                 isLoggedIn: false,
                 nickname: "test1",
+                authorization: "",
                 setIsLoggedIn: (newIsLoggedIn:boolean) => (
                     set({isLoggedIn: newIsLoggedIn})
                 ),
+                setAuthorization: (newAuthorization:string) => (
+                    set({authorization: newAuthorization})
+                )
             }),
         { name: "store.tsx", storage: createJSONStorage(() => sessionStorage)})
 )

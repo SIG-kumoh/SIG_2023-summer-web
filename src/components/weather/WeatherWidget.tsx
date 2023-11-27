@@ -42,11 +42,11 @@ export default function WeatherWidget() {
     let rainStatus:string = "";
 
     if (loading) {
-        return <div>로딩중...</div>; // 데이터 로딩 중인 동안 표시할 내용
+        return <div>로딩중...</div>;
     }
 
     if (error) {
-        return <div>날씨 정보를 받아올 수 없습니다.</div>; // 데이터 로딩 중 에러가 발생한 경우 표시할 내용
+        return <div>날씨 정보를 받아올 수 없습니다.</div>;
     }
     const weatherData:Array<Weather> = []
     //console.log(weatherData)
@@ -207,7 +207,7 @@ async function getWeatherData(today : Date) :Promise<ApiResponse> {
     const targetDate: string = year + formattedMonth + formattedDay;
     const baseTime: string = hourSelector(today.getHours());
 
-    const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
+    const url:string = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
     const queryParams = new URLSearchParams({
         serviceKey: '', //service key here
         pageNo: '1',
