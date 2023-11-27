@@ -5,6 +5,7 @@ import RelationNews from "../components/topic-detail-card/RelationNews";
 import {useParams} from "react-router-dom";
 import {BaseURL, GetServerData} from "../config/config";
 import {useQuery} from "react-query";
+import RoadMap from "../components/road-map/RoadMap";
 
 export default function TopicDetailPage() {
     const topic_id = useParams()
@@ -28,6 +29,8 @@ export default function TopicDetailPage() {
                 </div>
                 <div className="topic_detail_right">
                     <RelationNews/>
+                    {/*<RoadMap/>*/}
+                    //TODO 데이터 넘겨줘야 함
                 </div>
             </div>
         </div>
