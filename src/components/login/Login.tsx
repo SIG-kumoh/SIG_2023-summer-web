@@ -3,15 +3,14 @@ import {AiFillLock} from "react-icons/ai";
 import {Link, useNavigate} from "react-router-dom";
 import {loginStore, usePageStore,} from "../../store";
 import React, {useState} from "react";
-import {BaseURL} from "../../config/config";
+import {BaseURL, GetServerDataWithAuthorization} from "../../config/config";
 
 export default function Login() {
     const {setCur} = usePageStore();
-    const {setIsLoggedIn, setAuthorization} = loginStore()
+    const {setIsLoggedIn, setAuthorization, setNickname, setAuthority} = loginStore()
     const navigate = useNavigate()
     const [id, setId] = useState<string>("")
     const [pw, setPw] = useState<string>("")
-
 
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -23,8 +22,10 @@ export default function Login() {
             body: JSON.stringify({'username':id, 'password': pw})
         }).then(res => {
             setAuthorization(res.headers.get('Authorization'))
-            return res.ok
+            return res.json()
         }).then(res => {
+            setNickname(res.nickname)
+            setAuthority(res.authorities)
             setIsLoggedIn(true)
             navigate("/")
             window.location.reload()

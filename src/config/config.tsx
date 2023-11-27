@@ -20,6 +20,14 @@ export async function GetServerData(url:string) {
     return topicData.json()
 }
 
+export async function GetServerDataWithAuthorization(url:string, authorization:string) {
+    return await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `${authorization}`
+        }
+    }).then(res => res.json())
+}
 export interface News {
     title:string, url:string, imgUrl:string, press:string, regdate:string, content:string
 }

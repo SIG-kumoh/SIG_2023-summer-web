@@ -41,6 +41,10 @@
           font-size: 1rem;
           color: #ffffff;
           margin: 1rem 0 1rem 1rem;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         .top_login {
@@ -51,9 +55,12 @@
           border: #ffffff 1px solid;
           border-radius: 20px;
           color: #ffffff;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
-
     }
   }
 
