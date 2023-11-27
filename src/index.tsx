@@ -10,6 +10,7 @@ import TopicDetailPage from "./pages/TopicDetailPage";
 import LoginPage from "./pages/LoginPage";
 import UserManagePage from "./pages/UserManagePage";
 import MainPage from "./pages/MainPage";
+import Chat from "./components/chat/Chat";
 
 const queryClient = new QueryClient(
     {
@@ -28,6 +29,7 @@ root.render(
       <QueryClientProvider client={queryClient}>
           <BrowserRouter>
               <Header/>
+              <Chat socket_number={1233}/>
               <div className="background">
                   <Routes>
                       <Route path="/" element={<MainPage/>}/>

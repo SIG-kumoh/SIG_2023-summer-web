@@ -44,6 +44,11 @@ export interface User {
     id:string, pw:string, imgUrl:string, nickname:string
 }
 
+
+export interface Message {
+    nickname:string, text:string
+}
+
 export interface Weather {
     fcstTime: string,
     temperature: number,
@@ -51,3 +56,4 @@ export interface Weather {
     weatherStatus: string,
     rainStatus: string
 }
+
