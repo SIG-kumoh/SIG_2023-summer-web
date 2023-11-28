@@ -7,7 +7,7 @@ import {BaseURL, GetServerDataWithAuthorization} from "../../config/config";
 
 export default function Login() {
     const {setCur} = usePageStore();
-    const {setIsLoggedIn, setAuthorization, setNickname, setAuthority} = loginStore()
+    const {setIsLoggedIn, setAuthorization, setAuthority, setUsername} = loginStore()
     const navigate = useNavigate()
     const [id, setId] = useState<string>("")
     const [pw, setPw] = useState<string>("")
@@ -24,8 +24,8 @@ export default function Login() {
             setAuthorization(res.headers.get('Authorization'))
             return res.json()
         }).then(res => {
-            setNickname(res.nickname)
             setAuthority(res.authorities)
+            setUsername(res.username)
             setIsLoggedIn(true)
             navigate("/")
             window.location.reload()

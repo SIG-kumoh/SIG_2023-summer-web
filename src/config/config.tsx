@@ -10,10 +10,11 @@ export const Categories:Array<Detail> = [{url: "/", name: "홈", idx:0, section_
     {url: "/world", name: "세계", idx:6, section_id: "6"}]
 
 export interface Topic {
-    title:string, summary:string, imgUrl:string, clusterId:number, chatNamespace:string, relatedClusterId:number, articleList:Array<News>
+    title:string, summary:string, imgUrl:string, clusterId:number, chatNamespace:string, relatedClusterId:number, articleList:Array<News>, size:number
 }
 
 export const BaseURL = "http://202.31.202.34:80/api"
+export const ChatURL = "http://202.31.202.34:80"
 
 export async function GetServerData(url:string) {
     const topicData = await fetch(url)
@@ -37,16 +38,12 @@ export function GetTodayDate() {
     let year = today.getFullYear();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    return year + "-" + month + "-" + day
+    //return year + "-" + month + "-" + day
+    return "2023-11-27"
 }
-
-export interface User {
-    id:string, pw:string, imgUrl:string, nickname:string
-}
-
 
 export interface Message {
-    nickname:string, text:string
+    id:number, username:string, message:string, regdate:string, activated:number
 }
 
 export interface Weather {

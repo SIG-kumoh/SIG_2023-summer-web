@@ -2,25 +2,27 @@ import React, {useEffect, useState} from "react";
 import {Socket, io} from "socket.io-client";
 import ChatInfo from "./ChatInfo";
 import {loginStore} from "../../store";
-import {Message} from "../../config/config";
+import {ChatURL, Message} from "../../config/config";
 import Messages from "./Messages";
 
 interface ChatProps {
-    socket_number: number
+    room_name: string
 }
 export default function Chat(prop:ChatProps) {
-    let socket_number:number = prop.socket_number
-    const url = ''
-    const {nickname} = loginStore()
-    const [message, setMessage] = useState<string>()
-    const [messages, setMessages] = useState<Array<Message>>([])
+    let room_name:string = prop.room_name
+    const url = ChatURL + '/chat/conn'
+    const {authorization} = loginStore()
+    const [text, setText] = useState<string>("")
+    const [messages, setMessages] = useState<Message[]>([])
     const [socket, setSocket] = useState<Socket | null>(null)
 
     useEffect(() => {
-        const socketInstance = io(url)
+        const socketInstance = io(url, {
+            extraHeaders: {Authorization : authorization}
+        })
         setSocket(socketInstance)
 
-        socketInstance.emit('join', {nickname, socket_number}, (err:Error) => {
+        socketInstance.emit('join_room', {"room": room_name}, (err:Error) => {
             if (err) {
                 alert(err);
             }
@@ -28,13 +30,25 @@ export default function Chat(prop:ChatProps) {
         return () => {
             socketInstance.disconnect()
         }
-    }, [url, socket_number]);
+    }, [url, room_name]);
 
     useEffect(() => {
         if (socket) {
             socket.on("message", (message: Message) => {
-                setMessages((prevMessages) => [...prevMessages, message]);
+                setMessages(preMessages => [...preMessages, message]);
             });
+            socket.on("join_room", (res: any) => {
+                console.log(res)
+            })
+            socket.on("initialize", (res:any) => {
+                console.log(res)
+            })
+            socket.on("leave_room", (res:any) => {
+                console.log(res)
+            })
+            socket.on("message_disable", (res:any) => {
+                console.log(res)
+            })
         }
 
         return () => {
@@ -46,26 +60,26 @@ export default function Chat(prop:ChatProps) {
 
     const sendMessage = (event: React.KeyboardEvent | React.MouseEvent) => {
         event.preventDefault();
-        if (message && socket) {
-            socket.emit("sendMessage", message, () => setMessage(""));
+        if (text && socket) {
+            socket.emit("message", {'room':room_name, 'message':text}, () => setText(""));
         }
     };
 
     return (
-        <div className='outerContainer'>
-            <div className='container'>
+        <div className='chat_container'>
+            <div>
                 <ChatInfo/>
                 <Messages messages={messages} />
                 <form className="form">
                     <input
-                        className="input"
+                        className="chat_input"
                         type="text"
-                        placeholder="전송하려는 메시지를 입력하세요."
-                        value={message}
-                        onChange={({ target: { value } }) => setMessage(value)}
+                        placeholder="메시지를 입력하세요."
+                        value={text}
+                        onChange={({ target: { value } }) => setText(value)}
                         onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                     />
-                    <button className="sendButton" onClick={event => sendMessage(event)}>전송</button>
+                    <button className="chat_send_button" onClick={event => sendMessage(event)}>전송</button>
                 </form>
             </div>
         </div>

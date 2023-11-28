@@ -4,20 +4,19 @@ import {PostLogout} from "../../config/post_method";
 
 export default function HeaderTop() {
     const {setCur} = usePageStore();
-    const {isLoggedIn, nickname, authorization, setIsLoggedIn, setAuthorization, setAuthority, setNickname, authority} = loginStore()
+    const {isLoggedIn, authorization, setIsLoggedIn, username, setAuthorization, setAuthority, authority} = loginStore()
 
     let today:Date = new Date()
     const week:Array<string> = ['일', '월', '화', '수', '목', '금', '토']
+    //console.log(username, isLoggedIn, authorization, setIsLoggedIn, setAuthorization, setAuthority, authority)
 
     const logout = () => {
         PostLogout(authorization)
         setIsLoggedIn(false)
         setAuthority([])
         setAuthorization("")
-        setNickname("")
         window.location.reload()
     }
-    console.log(isLoggedIn, nickname, authorization, setIsLoggedIn, setAuthorization, setAuthority, setNickname, authority)
     return (
         <div className="header_top">
             <div className="top_inner">
@@ -29,18 +28,18 @@ export default function HeaderTop() {
                         {today.getMonth() + 1}월 {today.getDate()}월 {week[today.getDay()]}요일
                     </div>
                 </div>
-                {MakeRight(isLoggedIn, nickname, logout)}
+                {MakeRight(isLoggedIn, username, logout)}
             </div>
         </div>
     )
 }
 
-function MakeRight(bool:boolean, nickname:string, logout:any) {
+function MakeRight(bool:boolean, username:string, logout:any) {
     if (bool) {
         return(
         <div className="top_right">
             <div className="top_sign_up" onClick={event => logout(event)}>로그아웃</div>
-            <div className="top_login">{nickname} 님</div>
+            <div className="top_login">{username} 님</div>
         </div>
         )
     } else {

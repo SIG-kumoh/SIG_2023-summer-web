@@ -1,17 +1,3 @@
-import {GetServerData, BaseURL, Topic, News} from "../../config/config";
-import {Link, useParams} from "react-router-dom";
-import {useQuery} from "react-query";
-
-const dummyData:Topic = {
-    title: "서버로부터 응답이 없습니다",
-    summary: "",
-    imgUrl: "",
-    clusterId: 0,
-    chatNamespace: "",
-    relatedClusterId: 0,
-    articleList:[]
-}
-
 export default function TopicDetailCard(title:string, imgUrl:string, summary:string) {
     return(
         <div className="detail_card">

@@ -55,14 +55,14 @@ export default function BubbleChart() {
             return
         }
         data.sort((a: Topic, b: Topic) => {
-            return b.articleList.length - a.articleList.length
+            return b.size - a.size
         })
         function charge(d: any) {
             return Math.pow(d.radius, 2.0) * strength
         }
 
         function createNodes(data:Array<Topic>) {
-            const maxAmount:number = d3.max(data, (d: any) => +d.articleList.length) as number
+            const maxAmount:number = d3.max(data, (d: any) => +d.size) as number
 
             const radiusScale = d3.scaleSqrt()
                 .domain([0, maxAmount])
@@ -70,8 +70,8 @@ export default function BubbleChart() {
 
             const myNodes:Array<expendTopic> = data.map((d, idx) => ({
                 ...d,
-                radius: radiusScale(+Math.pow(d.articleList.length,1.07)),
-                size: +d.articleList.length,
+                radius: radiusScale(+Math.pow(d.size,1.07)),
+                size: +d.size,
                 x: Math.random() * width,
                 y: Math.random() * height,
                 color: setColor(idx),

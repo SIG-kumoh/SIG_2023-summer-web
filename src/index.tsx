@@ -29,7 +29,7 @@ root.render(
       <QueryClientProvider client={queryClient}>
           <BrowserRouter>
               <Header/>
-              <Chat socket_number={1233}/>
+              <Chat room_name={"1"}/>
               <div className="background">
                   <Routes>
                       <Route path="/" element={<MainPage/>}/>

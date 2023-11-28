@@ -111,7 +111,7 @@ function createFcstValue(weatherData: Array<Weather>) {
 
     for (let i = 1; i < weatherData.length && i < 6; i++) {
         result.push(
-            <div className="main_info">
+            <div className="main_info" key={i}>
                 <img className="weather_icon" src={imageSelector(weatherData[i])} alt=""/>
                 <div className="temperature">
                     {weatherData[i].temperature} °C

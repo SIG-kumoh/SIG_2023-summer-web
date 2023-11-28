@@ -8,17 +8,14 @@ export default function Messages(prop:MessagesProp) {
     let messages:Array<Message> = prop.messages
     return(
         <div>
-            {messages.map((m, i) => {
-                return <div key={i}>
-                    <MessageBox nickname={m.nickname} text={m.text}/>
+            {messages.map((m) => {
+                return (
+                    <div key={m.id}>
+                    <div>{m.username}</div>
+                    <div>{m.message}</div>
                 </div>
+                )
             })}
         </div>
-    )
-}
-
-function MessageBox(prop:Message) {
-    return(
-        <div>{prop.nickname}, {prop.text}</div>
     )
 }
