@@ -5,7 +5,9 @@
   display: flex;
   margin: 0 auto;
   padding-top: 2rem;
+  padding-bottom: 2rem;
   margin-bottom: 2rem;
+  border-bottom: 2px solid #cccccc;
 
   .topic_img_container {
     margin: 0 auto;
@@ -15,6 +17,7 @@
       object-fit: scale-down;
       width: 100%;
       height: 100%;
+      border-radius: 25px;
     }
   }
 

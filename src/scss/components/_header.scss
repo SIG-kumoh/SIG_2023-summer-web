@@ -18,46 +18,71 @@
       line-height: 3.2rem;
       justify-content: space-between;
 
-
-      .top_inner_left {
+      .top_inner_container {
         display: flex;
+
         .main_title {
           font-size: 2.5rem;
           font-weight: bolder;
           margin: 1rem 0 1rem 0;
           color: #ffffff;
         }
+
         .main_date{
           margin-left: 1rem;
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
+          color: #ffffff;
+        }
+
+        &:hover {
+          .logo {
+            display: block;
+          }
+        }
+
+        .top_inner_left {
+          display: flex;
+        }
+
+        .logo {
+          display: none;
+          width: 100px;
+          height: 75px;
         }
       }
+
       .top_right {
         display: flex;
 
         .top_sign_up {
           font-size: 1rem;
+          font-weight: bold;
           color: #ffffff;
+          padding: 0 1rem 0 1rem;
           margin: 1rem 0 1rem 1rem;
-          cursor: pointer;
+          border: #ffffff 1px solid;
+          border-radius: 20px;
+
           &:hover {
-            text-decoration: underline;
+            color: $dark-clay;
+            background-color: white;
           }
         }
 
         .top_login {
           font-size: 1rem;
+          font-weight: bold;
           margin: 1rem 0 1rem 1rem;
           padding: 0 1rem 0 1rem;
-          background-color: $light-warm-red;
           border: #ffffff 1px solid;
           border-radius: 20px;
           color: #ffffff;
-          cursor: pointer;
+
           &:hover {
-            text-decoration: underline;
+            color: $dark-clay;
+            background-color: white;
           }
         }
       }
@@ -80,6 +105,7 @@
       .card_container {
         display: flex;
         justify-content: flex-start;
+
         .header_bottom_card {
           margin-right: 2rem;
           cursor: pointer;
@@ -87,9 +113,16 @@
           &:first-child {
             margin-left: 10px;
           }
+
+          &:hover {
+            font-weight: bold;
+            color: $dark-clay;
+            border-bottom: $dark-clay 1px solid;
+          }
         }
 
         .select {
+          font-weight: bold;
           color: $dark-clay;
           border-bottom: $dark-clay 1px solid;
         }
