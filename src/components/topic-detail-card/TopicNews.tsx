@@ -1,21 +1,34 @@
 import { Link } from "react-router-dom";
 import {News} from "../../config/config";
+import React from "react";
 
 
-export default function TopicNews(news:Array<News>) {
+export default function TopicNews(page: number, itemsCountPerPage: number, news:Array<News>) {
     return(
         <div className="news_container">
             <ul>
-                {news.map((i:News) => (
-                    <li className="news" key={i.url}>
-                        <Link to={i.url} target="_blank">
-                            <NewsCard title={i.title} url={i.url} imgUrl={i.imgUrl} regdate={i.regdate} press={i.press} content={i.content}/>
-                        </Link>
-                    </li>
-                ))}
+                {createTopicNews(page, itemsCountPerPage, news)}
             </ul>
         </div>
     )
+}
+
+function createTopicNews(page: number, itemsCountPerPage:number, data: Array<News>) {
+    const result = []
+
+    for (let i = (page - 1) * itemsCountPerPage; i < page * itemsCountPerPage && i < data.length; i++) {
+        const news = data[i]
+        
+        result.push(
+            <li className="news" key={news.url}>
+                <Link to={news.url} target="_blank">
+                    <NewsCard title={news.title} url={news.url} imgUrl={news.imgUrl} regdate={news.regdate} press={news.press} content={news.content}/>
+                </Link>
+            </li>
+        )
+    }
+    
+    return result
 }
 
 function NewsCard(data:News) {

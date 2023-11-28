@@ -1,16 +1,25 @@
 import TopicDetailCard from "../components/topic-detail-card/TopicDetailCard";
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import TopicNews from "../components/topic-detail-card/TopicNews";
 import RelationNews from "../components/topic-detail-card/RelationNews";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {BaseURL, GetServerData} from "../config/config";
 import {useQuery} from "react-query";
-import RoadMap from "../components/road-map/RoadMap";
+import Paging from "../components/page/Paging";
 
 export default function TopicDetailPage() {
     const topic_id = useParams()
     const reqURL = BaseURL + "/news/cluster?cid=" + topic_id.topicId
     const {data, isLoading, isError} = useQuery([topic_id], () => GetServerData(reqURL))
+    const [page, setPage] = useState<number>(1)
+    const changePage = useCallback((page: number) => {setPage(page)}, [])
+    const location = useLocation()
+    const itemsCountPerPage = 7
+
+    useEffect(() => {
+        setPage(1)
+    }, [location]);
+
     if (isLoading || isError) {
         return(
             <div className="container">
@@ -25,12 +34,12 @@ export default function TopicDetailPage() {
             {TopicDetailCard(data.title, data.imgUrl, data.summary)}
             <div className="topic_detail_under">
                 <div className="topic_detail_left">
-                    {TopicNews(data.articleList)}
+                    {TopicNews(page, itemsCountPerPage, data.articleList)}
+                    {data.length === 0 ? <></> :
+                        <Paging page={page} count={data.articleList.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging> }
                 </div>
                 <div className="topic_detail_right">
                     <RelationNews/>
-                    {/*<RoadMap/>*/}
-                    //TODO 데이터 넘겨줘야 함
                 </div>
             </div>
         </div>
