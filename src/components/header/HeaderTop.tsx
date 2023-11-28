@@ -8,7 +8,10 @@ export default function HeaderTop() {
         <div className="header_top">
             <div className="top_inner">
                 <Link to={"/"} onClick={() => setCur(0)}>
-                    <div className="top_inner_left">오늘의 뉴스</div>
+                    <div className="top_inner_container">
+                        <div className="top_inner_left">오늘의 뉴스</div>
+                        <img className="logo" src={"/img/오늘의 뉴스.png"}/>
+                    </div>
                 </Link>
                 {MakeRight(isLoggedIn, nickname)}
             </div>
