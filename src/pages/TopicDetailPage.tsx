@@ -31,7 +31,7 @@ export default function TopicDetailPage() {
     }
     return(
         <div className="container">
-            {TopicDetailCard(data.title, data.imgUrl, data.summary)}
+            {TopicDetailCard(data.title, data.imgUrl, data.summary, data.words)}
             <div className="topic_detail_under">
                 <div className="topic_detail_left">
                     {TopicNews(page, itemsCountPerPage, data.articleList)}
