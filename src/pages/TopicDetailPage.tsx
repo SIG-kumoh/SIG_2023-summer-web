@@ -23,7 +23,6 @@ export default function TopicDetailPage() {
     return(
         <div className="container">
             {TopicDetailCard(data.title, data.imgUrl, data.summary)}
-            <RoadMap/>
             <div className="topic_detail_under">
                 <div className="topic_detail_left">
                     {TopicNews(data.articleList)}

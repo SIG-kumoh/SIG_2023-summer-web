@@ -1,4 +1,6 @@
 import {News} from "../../config/config";
+import RoadMap from "../road-map/RoadMap";
+import React from "react";
 
 const exampleNews:News = {
     title:"공사중",
@@ -14,8 +16,7 @@ export default function RelationNews () {
         <div className="relation_box">
             연관뉴스
             <div className="relation_news">
-                <img className="relation_img" src={exampleNews.imgUrl}/>
-                <div>{exampleNews.title}</div>
+                <RoadMap/>
             </div>
         </div>
     )
