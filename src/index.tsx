@@ -29,7 +29,6 @@ root.render(
       <QueryClientProvider client={queryClient}>
           <BrowserRouter>
               <Header/>
-              <Chat room_name={"1"}/>
               <div className="background">
                   <Routes>
                       <Route path="/" element={<MainPage/>}/>

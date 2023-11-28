@@ -1,3 +1,66 @@
-.chat_container {
+@import "../config/_color.scss";
 
+.chat_container {
+  border: 0.5px solid $dark-clay;
+  border-radius: 25px;
+  height: 30rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  .messages_container {
+    height:23rem;
+    overflow-y: scroll;
+
+    .message_container {
+      display: flex;
+      margin-bottom: 0.5rem;
+      padding: 0.3rem;
+      &:hover {
+        background-color: #cccccc;
+        border-radius: 10px;
+      }
+      .msg_username {
+        margin-right: 1rem;
+        font-size: 1rem;
+        color: #57606a;
+      }
+      .msg_text {
+        font-size: 1rem;
+        color: #000000;
+      }
+    }
+  }
+  .chat_input_container {
+    border-top: 0.5px solid #000000;
+    padding: 0.5rem;
+    margin-top: 1rem;
+
+    .chat_input {
+      display: block;
+      width: 100%;
+      background-color: $bg-color;
+      font-size: 1rem;
+      padding-bottom: 0.3rem;
+      border: 0;
+      border-bottom: 0.5px solid $dark-clay;
+      &:focus {
+        outline: none;
+      }
+    }
+    .chat_foot {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+      .text_length {
+        font-size: 0.8rem;
+        color: #57606a;
+        margin-right: 1rem;
+        line-height: 24px;
+      }
+      .chat_send_button {
+        border: none;
+        background-color: $bg-color;
+      }
+    }
+  }
 }

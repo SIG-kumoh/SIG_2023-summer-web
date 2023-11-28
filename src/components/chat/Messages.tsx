@@ -1,4 +1,5 @@
 import {Message} from "../../config/config";
+import {useEffect, useRef} from "react";
 
 interface MessagesProp {
     messages:Array<Message>
