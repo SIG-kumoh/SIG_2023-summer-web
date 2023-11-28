@@ -1,6 +1,19 @@
 @import "../config/_color.scss";
 @import "../utils/_util.scss";
 
+.topic_words_container {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  .topic_word {
+    padding: 0.5rem;
+    border-radius: 16px;
+    border: 2px solid $dark-clay;
+  }
+}
+
 .detail_card {
   display: flex;
   margin: 0 auto;
@@ -23,6 +36,7 @@
 
   .topic_text {
     width: 63%;
+
     .topic_title {
       font-size: 1.5rem;
       font-weight: bold ;

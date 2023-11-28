@@ -29,16 +29,16 @@ function setColor(idx: number):string {
 
 
 const width = 900
-const height = 550
+const height = 600
 
-function makeTextArray(text:string) {
-    const textLength = 7
+function makeTextArray(text:string, size: number) {
+    const textLength = size * 0.6
     if (text.length > textLength * 3) {
-        text = text.substr(0, textLength * 3 - 3) + "..."
+        text = text.substring(0, textLength * 3 - 3) + "..."
     }
     const result:Array<string> = []
     for(let i = 0; i < text.length; i+=textLength) {
-        result.push(text.substr(i, textLength))
+        result.push(text.substring(i, i + textLength))
     }
     return result
 }
@@ -62,15 +62,16 @@ export default function BubbleChart() {
         }
 
         function createNodes(data:Array<Topic>) {
+            console.log(data)
             const maxAmount:number = d3.max(data, (d: any) => +d.size) as number
 
             const radiusScale = d3.scaleSqrt()
                 .domain([0, maxAmount])
-                .range([0, 80]);
+                .range([40, 90]);
 
             const myNodes:Array<expendTopic> = data.map((d, idx) => ({
                 ...d,
-                radius: radiusScale(+Math.pow(d.size,1.07)),
+                radius: radiusScale(+Math.pow(d.size,((data.length - idx) * 0.15))),
                 size: +d.size,
                 x: Math.random() * width,
                 y: Math.random() * height,
@@ -84,8 +85,7 @@ export default function BubbleChart() {
             .force('charge', d3.forceManyBody().strength(charge))
             .force('x', d3.forceX().strength(strength).x(center.x))
             .force('y', d3.forceY().strength(strength).y(center.y))
-            .force('collision', d3.forceCollide().radius((d: any) => d.radius + 1))
-        simulation.stop()
+            .force('collision', d3.forceCollide().radius((d: any) => d.radius + 5))
 
         const svg = d3.select('svg')
             .attr("width", width)
@@ -96,8 +96,15 @@ export default function BubbleChart() {
         const elements = svg.selectAll('.bubble')
             .data(nodes, (d: any) => {
                 return d.title
-            }).enter().append('g').on("mouseover", function(d) {
+            })
+            .enter()
+            .append('g')
+            .on("mouseover", function(d) {
                 d3.select(this).style("cursor", "pointer");
+                d3.select(this).select("circle").attr('r', (d: any) => d.radius * 1.05)
+            })
+            .on("mouseout", function(d) {
+                d3.select(this).select("circle").attr('r', (d: any) => d.radius)
             })
             .on('click', (event, d) => {
                 //window.location.href = "/topic-page/" + event.clusterId
@@ -115,19 +122,20 @@ export default function BubbleChart() {
             .append('text')
             .style('text-anchor', 'middle')
             .style('white-space', 'pre')
+            .style("font-weight", "bold")
             .text((d: any) => d.title)
 
 
         svg.selectAll('text').call(function(t){
             t.each(function(d:any){
-                var self = d3.select(this);
-                var s = makeTextArray(d.title);
+                const self = d3.select(this);
+                const s = makeTextArray(d.title, d.size);
                 self.text('');
                 s.map((d,i) => {
                     self.append("tspan")
                         .attr("x", 0)
                         .attr("dy", i ? "1.2em" : "-.2em")
-                        .text(s[i]);
+                        .text(d);
                 })
             })
         })

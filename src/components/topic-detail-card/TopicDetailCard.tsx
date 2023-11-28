@@ -1,12 +1,21 @@
-export default function TopicDetailCard(title:string, imgUrl:string, summary:string) {
+export default function TopicDetailCard(title:string, imgUrl:string, summary:string, words:Array<string>) {
     return(
-        <div className="detail_card">
-            <div className="topic_img_container">
-                <img className="topic_img" src={imgUrl} alt={"이미지 없음"}/>
+        <div className="topic_detail_card">
+            <div className="topic_words_container">
+                {words.map((e) =>
+                    <div className="topic_word">
+                        {e}
+                    </div>
+                )}
             </div>
-            <div className="topic_text">
-                <div className="topic_title">{title}</div>
-                <div className="topic_summary_content">{summary.length === 0 ? "요약문 없음" : summary}</div>
+            <div className="detail_card">
+                <div className="topic_img_container">
+                    <img className="topic_img" src={imgUrl} alt={"이미지 없음"}/>
+                </div>
+                <div className="topic_text">
+                    <div className="topic_title">{title}</div>
+                    <div className="topic_summary_content">{summary.length === 0 ? "요약문 없음" : summary}</div>
+                </div>
             </div>
         </div>
     )

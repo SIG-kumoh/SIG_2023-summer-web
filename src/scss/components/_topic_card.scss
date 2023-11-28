@@ -1,12 +1,18 @@
 @import "../utils/_util.scss";
 
+a:nth-child(2) .card_body {
+  border-top: none;
+}
+
 .card_body {
-  background-color: #ffffff;
   width: 100%;
   display: flex;
-  height: 10rem;
+  border-top: 2px dashed gray;
   border-bottom: 4px solid #f4f6f8;
-  border-radius: 15px;
+
+  &:hover .topic_title {
+    text-decoration: underline;
+  }
 
   .card_body_left {
     text-align: center;
@@ -16,8 +22,9 @@
     .card_body_img {
       padding: 1rem;
       width: 100%;
-      height: 100%;
+      height: 10rem;
       object-fit: fill;
+      border-radius: 32px;
     }
   }
 
@@ -26,11 +33,8 @@
     font-size: 1.4rem;
     margin: auto;
 
-    & .topic_title:hover {
-      text-decoration: underline;
-    }
-
     .topic_title {
+      margin-top: 1rem;
       margin-right: 2rem;
     }
 
@@ -38,6 +42,15 @@
       margin: 1rem 2rem 0 0;
       font-size: 1rem;
       color: #666666;
+    }
+
+    .topic_word_block {
+      display: flex;
+      .topic_words {
+        font-size: 1rem;
+        padding: 10px 15px;
+        color: $light-cold-azure;
+      }
     }
   }
 
