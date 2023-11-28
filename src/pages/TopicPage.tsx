@@ -14,7 +14,8 @@ const dummyTopic:Topic = {
     chatNamespace:"",
     articleList: [],
     relatedClusterId: 0,
-    size: 0
+    size: 0,
+    words: []
 }
 
 
@@ -35,7 +36,7 @@ export default function TopicPage() {
         for (let i = (page - 1) * itemsCountPerPage; i < page * itemsCountPerPage && i < data.length; i++) {
             result.push(
                 <TopicCard key={data[i].clusterId} title={data[i].title} summary={data[i].summary} imgUrl={data[i].imgUrl} clusterId={data[i].clusterId}
-                           chatNamespace={data[i].chatNamespace} relatedClusterId={data[i].relatedClusterId} articleList={data[i].articleList} size={data.size} />
+                           chatNamespace={data[i].chatNamespace} relatedClusterId={data[i].relatedClusterId} articleList={data[i].articleList} size={data.size} words={data[i].words} />
             )
         }
 

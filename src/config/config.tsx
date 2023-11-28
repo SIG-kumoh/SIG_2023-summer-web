@@ -10,7 +10,7 @@ export const Categories:Array<Detail> = [{url: "/", name: "홈", idx:0, section_
     {url: "/world", name: "세계", idx:6, section_id: "6"}]
 
 export interface Topic {
-    title:string, summary:string, imgUrl:string, clusterId:number, chatNamespace:string, relatedClusterId:number, articleList:Array<News>, size:number
+    title:string, summary:string, imgUrl:string, clusterId:number, chatNamespace:string, relatedClusterId:number, articleList:Array<News>, size:number, words:Array<string>
 }
 
 export const BaseURL = "http://202.31.202.34:80/api"
