@@ -38,8 +38,8 @@ export function GetTodayDate() {
     let year = today.getFullYear();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    //return year + "-" + month + "-" + day
-    return "2023-11-27"
+    return year + "-" + month + "-" + day
+    //return "2023-11-27"
 }
 
 export interface Message {
@@ -52,5 +52,9 @@ export interface Weather {
     rainPercent: number,
     weatherStatus: string,
     rainStatus: string
+}
+
+export interface Node {
+    id: number, title: string, regdate:string, topic: Array<string>
 }
 

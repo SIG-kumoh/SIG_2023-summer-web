@@ -16,8 +16,8 @@ export default function TopicCard(topic:Topic) {
                         {topic.summary}
                     </div>
                     <div className="topic_word_block">
-                        {topic.words.map((e) =>
-                            <div className="topic_words">
+                        {topic.words.map((e, idx) =>
+                            <div className="topic_words" key={idx}>
                                 #{e}
                             </div>
                         )}

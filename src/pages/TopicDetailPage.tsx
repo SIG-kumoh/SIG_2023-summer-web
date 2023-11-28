@@ -6,6 +6,7 @@ import {useLocation, useParams} from "react-router-dom";
 import {BaseURL, GetServerData} from "../config/config";
 import {useQuery} from "react-query";
 import Paging from "../components/page/Paging";
+import Chat from "../components/chat/Chat";
 
 export default function TopicDetailPage() {
     const topic_id = useParams()
@@ -14,6 +15,10 @@ export default function TopicDetailPage() {
     const [page, setPage] = useState<number>(1)
     const changePage = useCallback((page: number) => {setPage(page)}, [])
     const location = useLocation()
+    let room_name = ""
+    if(location.search.length !== 0) {
+        room_name = location.search.split("=")[1]
+    }
     const itemsCountPerPage = 7
 
     useEffect(() => {
@@ -39,7 +44,8 @@ export default function TopicDetailPage() {
                         <Paging page={page} count={data.articleList.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging> }
                 </div>
                 <div className="topic_detail_right">
-                    <RelationNews/>
+                    {room_name.length !== 0 ? <Chat room_name={room_name}/> : <></>}
+                    <RelationNews nodes={data.relatedClusters}/>
                 </div>
             </div>
         </div>

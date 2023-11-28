@@ -51,7 +51,6 @@ export default function TopicPage() {
         return(
             <div className="container">
                 <div className="category_name">{detail.name}</div>
-                {TopicCard(dummyTopic)}
             </div>
         )
     }

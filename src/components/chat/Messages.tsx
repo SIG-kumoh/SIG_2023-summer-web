@@ -7,8 +7,15 @@ interface MessagesProp {
 
 export default function Messages(prop:MessagesProp) {
     let messages:Array<Message> = prop.messages
+    const scrollRef = useRef<HTMLDivElement | null>(null)
+    useEffect(() => {
+        if(scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current?.scrollHeight
+        }
+    }, [messages]);
+
     return(
-        <div className='messages_container'>
+        <div className='messages_container' ref={scrollRef}>
             {messages.map((m) => {
                 return (
                     <div className="message_container" key={m.id}>

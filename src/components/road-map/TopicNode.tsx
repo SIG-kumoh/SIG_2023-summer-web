@@ -1,9 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-
-interface Node {
-    id: number, title: string, regdate:string, topic: Array<string>
-}
+import {Node} from "../../config/config";
 
 export default function TopicNode(data: Node) {
     return (
@@ -17,8 +14,8 @@ export default function TopicNode(data: Node) {
                 </div>
 
                 <div className="topic_block">
-                    {data.topic.map((e: string) =>
-                        <div className="news_topic">
+                    {data.topic.map((e: string, index:number) =>
+                        <div className="news_topic" key={index}>
                             {e}
                         </div>
                     )}

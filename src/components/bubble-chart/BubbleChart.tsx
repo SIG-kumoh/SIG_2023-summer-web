@@ -62,7 +62,6 @@ export default function BubbleChart() {
         }
 
         function createNodes(data:Array<Topic>) {
-            console.log(data)
             const maxAmount:number = d3.max(data, (d: any) => +d.size) as number
 
             const radiusScale = d3.scaleSqrt()
@@ -108,7 +107,7 @@ export default function BubbleChart() {
             })
             .on('click', (event, d) => {
                 //window.location.href = "/topic-page/" + event.clusterId
-                navigate("/topic-page/" + event.clusterId)
+                navigate("/topic-page/" + event.clusterId + "?room_name=" + event.roomName)
             })
 
         const bubbles = elements

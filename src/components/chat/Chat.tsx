@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Socket, io} from "socket.io-client";
-import ChatInfo from "./ChatInfo";
 import {loginStore} from "../../store";
 import {ChatURL, Message} from "../../config/config";
 import Messages from "./Messages";
@@ -39,16 +38,12 @@ export default function Chat(prop:ChatProps) {
                 setMessages(preMessages => [...preMessages, message]);
             });
             socket.on("join_room", (res: any) => {
-                console.log(res)
             })
             socket.on("initialize", (res:any) => {
-                console.log(res)
             })
             socket.on("leave_room", (res:any) => {
-                console.log(res)
             })
             socket.on("message_disable", (res:any) => {
-                console.log(res)
             })
         }
 
@@ -90,7 +85,7 @@ export default function Chat(prop:ChatProps) {
                         <div className="text_length">{curLength} / 100</div>
                         <button className="chat_send_button" onClick={event => sendMessage(event)}>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                                <path d="M5,12L3,3l19,9L3,21L5,12z M5.82,12.93L17,12L5.82,11.07l-1.4-6.29L19.66,12 L4.42,19.22L5.82,12.93z" fill-rule="evenodd"></path>
+                                <path d="M5,12L3,3l19,9L3,21L5,12z M5.82,12.93L17,12L5.82,11.07l-1.4-6.29L19.66,12 L4.42,19.22L5.82,12.93z"></path>
                             </svg>
                         </button>
                     </div>
