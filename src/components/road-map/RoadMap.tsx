@@ -3,31 +3,24 @@ import {useEffect, useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import {Topic} from "../../config/config";
 
-const dummyNodes = [
-    { id: 94865, title: "바느질 나눔 봉사’ 김도순·곽경희씨 LG의인상", x: 0, y: 0, root: true },
-    { id: 94866, title: "기적의 생환’ 봉화 광부 “다시, 첫 생일", x: 0, y: 0, root: false },
+const nodes = [
+    { id: 94865, title: "바느질 나눔 봉사’ 김도순·곽경희씨 LG의인상", x: 200, y: 0, root: true },
+    { id: 94866, title: "기적의 생환’ 봉화 광부 “다시, 첫 생일", x: 100, y: 0, root: false },
     { id: 94867, title: "등산로 순찰’ 인생 2막 연 퇴직 경찰", x: 0, y: 0, root: false },
-    { id: 94868, title: "이종석 헌재소장 인사청문회 13일 열린다", x: 0, y: 0, root: false },
-    { id: 94869, title: "독거노인·장애인 돕는 소상공인에…LG유플러스, 3년째 ‘적층 나눔’ 실천", x: 0, y: 0, root: false },
-    { id: 94870, title: "CJ그룹 창립 70주년…이재현 회장 “온리원 정신 재건” 주문", x: 0, y: 0, root: false },
-    { id: 94871, title: "SK넥실리스 “압도적 기술로 ‘초박형 동박’ 광폭 생산", x: 0, y: 0, root: false },
-    { id: 94872, title: "삼성 일가, 상속세 내려 주식 2조6천억원 매각", x: 0, y: 0, root: false },
-    { id: 94873, title: "LG디스플레이, 초대형 투명 OLED 테이블…스타벅스 인테리어 혁신[포토뉴스]", x: 0, y: 0, root: false },
-    { id: 94874, title: "못 버는 것도 힘겨운데…저소득층, 못 먹는 설움까지", x: 0, y: 0, root: false },
+    // { id: 94868, title: "이종석 헌재소장 인사청문회 13일 열린다", x: 0, y: 0, root: false },
+    // { id: 94869, title: "독거노인·장애인 돕는 소상공인에…LG유플러스, 3년째 ‘적층 나눔’ 실천", x: 0, y: 0, root: false },
+    // { id: 94870, title: "CJ그룹 창립 70주년…이재현 회장 “온리원 정신 재건” 주문", x: 0, y: 0, root: false },
+    // { id: 94871, title: "SK넥실리스 “압도적 기술로 ‘초박형 동박’ 광폭 생산", x: 0, y: 0, root: false },
+    // { id: 94872, title: "삼성 일가, 상속세 내려 주식 2조6천억원 매각", x: 0, y: 0, root: false },
+    // { id: 94873, title: "LG디스플레이, 초대형 투명 OLED 테이블…스타벅스 인테리어 혁신[포토뉴스]", x: 0, y: 0, root: false },
+    // { id: 94874, title: "못 버는 것도 힘겨운데…저소득층, 못 먹는 설움까지", x: 0, y: 0, root: false },
 ];
-const dummyLinks = [
+const links = [
     { source: 94865, target: 94866 },
-    { source: 94865, target: 94867 },
-    { source: 94865, target: 94868 },
-    { source: 94866, target: 94869 },
-    { source: 94866, target: 94870 },
-    { source: 94866, target: 94871 },
-    { source: 94867, target: 94872 },
-    { source: 94867, target: 94873 },
-    { source: 94868, target: 94874 },
+    { source: 94866, target: 94867 },
 ];
 
-export default function RoadMap(curClusters: Topic, relatedClusters: Array<Topic>, width: number = 1000, height: number =500) {
+export default function RoadMap() {
     interface Node {
         id: number,
         title: string,
@@ -58,14 +51,15 @@ export default function RoadMap(curClusters: Topic, relatedClusters: Array<Topic
 
     const navigate = useNavigate()
     const svgRef = useRef(null);
-    const [nodes, links] = makeNodes(curClusters, relatedClusters)
+    const width = 1028;
+    const height = 100;
+    //const [nodes, links] = makeNodes(curClusters, relatedClusters)
 
     useEffect(() => {
         const svg = d3
             .select(svgRef.current)
             .attr("width", width)
             .attr("height", height)
-            .style("position", "relative")
 
         const link = svg
             .selectAll("line")
@@ -116,9 +110,9 @@ export default function RoadMap(curClusters: Topic, relatedClusters: Array<Topic
             .forceSimulation(nodes)
             .force(
                 "link",
-                d3.forceLink(links).distance(() => 30).id((d: any) => d.id)
+                d3.forceLink(links).distance(() => 300).id((d: any) => d.id)
             )
-            .force("charge", d3.forceManyBody().strength(-200))
+            //.force("charge", d3.forceManyBody().strength(-200))
             .force("center", d3.forceCenter(width / 2, height / 2))
             .on("tick", () => {
                 link.attr("x1", (d: any) => d.source.x)

@@ -20,7 +20,7 @@ const dummyTopic:Topic = {
 export default function TopicPage() {
     const {cur} = usePageStore()
     const detail:Detail = Categories[cur]
-    const reqURL = BaseURL + "/news/section?sid=" + detail.section_id + "&date=" + GetTodayDate()
+    const reqURL = BaseURL + "/news/section?sid=" + detail.section_id + "&date=" + "2023-11-27"
     const {data, isLoading, isError} =
         useQuery(['topic', detail.name], () => GetServerData(reqURL))
     const [page, setPage] = useState<number>( 1)

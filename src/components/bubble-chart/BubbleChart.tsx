@@ -45,7 +45,7 @@ function makeTextArray(text:string) {
 
 export default function BubbleChart() {
     const navigate = useNavigate()
-    const reqURL = BaseURL + "/news/hottopic?date=" + GetTodayDate()
+    const reqURL = BaseURL + "/news/hottopic?date=" + "2023-11-27"
     const {data, isLoading, isError} = useQuery(['hottopic'], () => GetServerData(reqURL))
     const center = { x: width / 2, y: height / 2 }
     const strength = 0.05
