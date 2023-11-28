@@ -14,7 +14,7 @@ export default function HeaderBottom() {
                         <Card key={index} url={data.url} name={data.name} idx={data.idx} section_id={data.section_id}/>
                     )}
                 </div>
-                {/*<WeatherWidget/>*/}
+                <WeatherWidget/>
             </div>
         </div>
     )

@@ -24,12 +24,12 @@ export default function HeaderTop() {
                     <Link to={"/"} onClick={() => setCur(0)}>
                         <div className="top_inner_container">
                             <div className="main_title">오늘의 뉴스</div>
+                            <div className="main_date">
+                                {today.getMonth() + 1}월 {today.getDate()}월 {week[today.getDay()]}요일
+                            </div>
                             <img className="logo" src={"/img/오늘의 뉴스.png"}/>
                         </div>
                     </Link>
-                    <div className="main_date">
-                        {today.getMonth() + 1}월 {today.getDate()}월 {week[today.getDay()]}요일
-                    </div>
                 </div>
                 {MakeRight(isLoggedIn, username, logout)}
             </div>
