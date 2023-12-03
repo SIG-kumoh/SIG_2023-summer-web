@@ -15,8 +15,8 @@ export default function RelationNews (prop: Prop) {
             <div className="relation_news">
                 {RoadMap(nodes.length)}
                 <div className="info_block">
-                    {nodes.map((e: any) =>
-                        <TopicNode key={e.clusterId} id={e.clusterId} title={e.title} regdate={e.regdate} topic={e.words}/>
+                    {nodes.map((e: any,i:number) =>
+                        <TopicNode key={e.clusterId} id={e.clusterId} title={e.title} regdate={e.regdate} topic={e.words} idx={i}/>
                     )}
                 </div>
             </div>

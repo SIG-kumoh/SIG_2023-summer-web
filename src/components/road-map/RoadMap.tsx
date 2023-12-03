@@ -1,16 +1,26 @@
 import * as d3 from "d3";
 import {useEffect, useRef} from "react";
 import {Topic} from "../../config/config";
+import {text} from "d3";
 
 interface Node {
     id: number,
     x: number,
     y: number,
+    color: string
 }
 
 interface Link {
     source: number,
     target: number
+}
+
+function setColor(idx: number): string {
+    if (idx === 0) {
+        return "#EE6C4D"
+    } else {
+        return "#293241"
+    }
 }
 
 export default function RoadMap(dataLength: number) {
@@ -24,7 +34,7 @@ export default function RoadMap(dataLength: number) {
         const links: Array<Link> = []
 
         for (let i = 0; i < length; i++) {
-            nodes.push({id: i, x: nodeX, y: 75 + i * 165});
+            nodes.push({id: i, x: nodeX, y: 75 + i * 165, color: setColor(i)});
             if (i + 1 < length) {
                 links.push({source: i, target: i + 1})
             }
@@ -61,7 +71,8 @@ export default function RoadMap(dataLength: number) {
                     .attr("r", (d: any) => {
                         return 10
                     })
-                    .attr("fill", "#293241");
+                    .attr("fill", d.color)
+                    .text("v")
             });
 
         const simulation = d3

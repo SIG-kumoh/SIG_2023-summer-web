@@ -21,8 +21,13 @@ export default function TopicDetailPage() {
     }
     const itemsCountPerPage = 7
 
+    const moveToTop = () => {
+        window.scrollTo({top: 0, behavior: 'smooth'})
+    }
+
     useEffect(() => {
         setPage(1)
+        moveToTop()
     }, [location]);
 
     if (isLoading || isError) {
@@ -44,7 +49,7 @@ export default function TopicDetailPage() {
                         <Paging page={page} count={data.articleList.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging> }
                 </div>
                 <div className="topic_detail_right">
-                    {room_name.length !== 0 ? <Chat room_name={room_name}/> : <></>}
+                    {/*{room_name.length !== 0 ? <Chat room_name={"1"}/> : <></>}*/}{/*room_name 들어감*/}
                     <RelationNews nodes={data.relatedClusters}/>
                 </div>
             </div>
