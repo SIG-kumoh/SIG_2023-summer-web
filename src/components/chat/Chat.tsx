@@ -9,7 +9,7 @@ interface ChatProps {
 }
 export default function Chat(prop:ChatProps) {
     let room_name:string = prop.room_name
-    const url = ChatURL + '/chat/conn'
+    const url = ChatURL
     const {authorization} = loginStore()
     const [text, setText] = useState<string>("")
     const [messages, setMessages] = useState<Message[]>([])
@@ -18,16 +18,26 @@ export default function Chat(prop:ChatProps) {
 
     useEffect(() => {
         const socketInstance = io(url, {
-            extraHeaders: {Authorization : authorization}
+            transports: ['websocket'],
+            transportOptions: {
+                websocket: {
+                    extraHeaders: {
+                        Authorization: authorization
+                    }
+
+                }
+            }
         })
         setSocket(socketInstance)
 
         socketInstance.emit('join_room', {"room": room_name}, (err:Error) => {
+            console.log("join_room")
             if (err) {
                 alert(err);
             }
         });
         return () => {
+            console.log("disconnect")
             socketInstance.disconnect()
         }
     }, [url, room_name]);
@@ -35,6 +45,7 @@ export default function Chat(prop:ChatProps) {
     useEffect(() => {
         if (socket) {
             socket.on("message", (message: Message) => {
+                console.log(message)
                 setMessages(preMessages => [...preMessages, message]);
             });
             socket.on("join_room", (res: any) => {
@@ -47,11 +58,11 @@ export default function Chat(prop:ChatProps) {
             })
         }
 
-        return () => {
+        /*return () => {
             if (socket) {
                 socket.off("message");
             }
-        };
+        };*/
     }, [socket]);
 
     const sendMessage = (event: React.KeyboardEvent | React.MouseEvent) => {

@@ -1,7 +1,7 @@
 export interface Detail {
     url:string, name:string, idx:number, section_id:string
 }
-export const Categories:Array<Detail> = [{url: "/", name: "홈", idx:0, section_id: "/hot"},
+export const Categories:Array<Detail> = [{url: "/", name: "홈", idx:0, section_id: ""},
     {url: "/politics", name: "정치", idx:1, section_id: "1"},
     {url: "/economy", name: "경제", idx:2, section_id: "2"},
     {url: "/society", name: "사회", idx:3, section_id: "3"},
@@ -14,7 +14,7 @@ export interface Topic {
 }
 
 export const BaseURL = "http://202.31.202.34:80/api"
-export const ChatURL = "http://202.31.202.34:80"
+export const ChatURL = "http://202.31.202.34:80/socket.io/conn"
 
 export async function GetServerData(url:string) {
     const topicData = await fetch(url)
@@ -42,6 +42,10 @@ export function GetTodayDate() {
     //return "2023-11-27"
 }
 
+export function GetTodayDateAndTime(cur:string):string {
+    return cur.substring(0, 10) + " " + cur.substring(11, 16)
+}
+
 export interface Message {
     id:number, username:string, message:string, regdate:string, activated:number
 }
@@ -55,6 +59,6 @@ export interface Weather {
 }
 
 export interface Node {
-    id: number, title: string, regdate:string, topic: Array<string>
+    id: number, title: string, regdate:string, topic: Array<string>, idx:number
 }
 

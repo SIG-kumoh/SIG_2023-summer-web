@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {News} from "../../config/config";
+import {GetTodayDateAndTime, News} from "../../config/config";
 import React from "react";
 
 
@@ -42,7 +42,7 @@ function NewsCard(data:News) {
                 <div className="news_content">{data.content}</div>
                 <div className="news_under_box">
                     <div className="news_press">{data.press}</div>
-                    <div className="news_date">{data.regdate}</div>
+                    <div className="news_date">{GetTodayDateAndTime(data.regdate)}</div>
                 </div>
             </div>
         </div>

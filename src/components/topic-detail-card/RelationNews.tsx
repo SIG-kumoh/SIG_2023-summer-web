@@ -11,7 +11,9 @@ export default function RelationNews (prop: Prop) {
     const nodes = prop.nodes
     return(
         <div className="relation_box">
-            연관뉴스
+            <div className="relation_title">
+                연관뉴스
+            </div>
             <div className="relation_news">
                 {RoadMap(nodes.length)}
                 <div className="info_block">
