@@ -5,6 +5,7 @@ import {PostLogout} from "../../config/post_method";
 export default function HeaderTop() {
     const {setCur} = usePageStore();
     const {isLoggedIn, authorization, setIsLoggedIn, username, setAuthorization, setAuthority, authority} = loginStore()
+    const navi = useNavigate()
 
     let today:Date = new Date()
     const week:Array<string> = ['일', '월', '화', '수', '목', '금', '토']
@@ -15,6 +16,7 @@ export default function HeaderTop() {
         setIsLoggedIn(false)
         setAuthority([])
         setAuthorization("")
+        navi("/")
         window.location.reload()
     }
     return (
@@ -42,7 +44,9 @@ function MakeRight(bool:boolean, username:string, logout:any) {
         return(
         <div className="top_right">
             <div className="top_sign_up" onClick={event => logout(event)}>로그아웃</div>
-            <div className="top_login">{username} 님</div>
+            <Link to={"/user/my-page"}>
+                <div className="top_login">{username} 님</div>
+            </Link>
         </div>
         )
     } else {

@@ -1,17 +1,17 @@
 import SignUp from "../components/user-manage/SignUp";
 import {useParams} from "react-router-dom";
 import MyPage from "../components/user-manage/MyPage";
+import {loginStore} from "../store";
 
 export default function UserManagePage() {
     const location = useParams()
     let title = ''
-    let isSignUp:boolean = true
+    const {isLoggedIn} = loginStore()
 
     if (location.state === 'sign-up') {
         title = '회원 가입'
     } else if (location.state === 'my-page') {
         title = '마이 페이지'
-        isSignUp = false
     }
 
     return(
@@ -19,7 +19,9 @@ export default function UserManagePage() {
             <div className="category_name">
                 {title}
             </div>
-            {isSignUp ? <SignUp/> : <MyPage/>}
+            <div className="user_manage_container">
+                {!isLoggedIn ? <SignUp/> : <MyPage/>}
+            </div>
         </div>
     )
 }

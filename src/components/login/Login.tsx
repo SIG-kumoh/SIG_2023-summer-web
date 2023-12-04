@@ -22,8 +22,16 @@ export default function Login() {
             body: JSON.stringify({'username':id, 'password': pw})
         }).then(res => {
             setAuthorization(res.headers.get('Authorization'))
+            if(res.status === 401) {
+                alert("아이디 또는 비밀번호가 일치하지 않습니다.")
+                return false
+            }
             return res.json()
         }).then(res => {
+            if(res === false) {
+                window.location.reload()
+                return
+            }
             setAuthority(res.authorities)
             setUsername(res.username)
             setIsLoggedIn(true)

@@ -1,0 +1,69 @@
+@import "../config/_color.scss";
+
+.user_manage_container {
+  background-color: #ffffff;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 20px;
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .id_container {
+    font-size: 1.5rem;
+
+    .id_head {
+      display: flex;
+      align-items: flex-end;
+      .id_title {
+        margin-right: 1rem;
+      }
+      .id_text {
+        font-size: 1rem;
+        line-height: 1rem;
+        color: $light-warm-red;
+      }
+      .hide {
+        display: none;
+      }
+
+    }
+
+  }
+
+  .pw_container {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+  .user_manage_input {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .user_button {
+    background-color: $dark-clay;
+    border: 1px solid $dark-clay;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    &:hover {
+      background-color: #ffffff;
+      color: $dark-clay;
+    }
+  }
+  .red_color {
+    border: 1px solid $light-warm-red;
+    background-color: $light-warm-red;
+    &:hover {
+      color: $light-warm-red;
+    }
+  }
+
+}
