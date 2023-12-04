@@ -49,7 +49,7 @@ export default function Messages(prop:MessagesProp) {
                 return (
                     <div className="message_container" key={m.id}>
                         <div className="msg_username">{m.username}</div>
-                        {m.activated === 1 ? <div className="msg_text">{m.message}</div> : <div className="msg_text">차단된 채팅입니다</div>}
+                        {m.activated === 1 ? <div className="msg_text">{m.message}</div> : <div className="msg_text block">[차단된 채팅입니다]</div>}
                         {authority === 'admin' ? <button onClick={e => alertConfirm(e, m)} className="admin_delete_button">🗑️</button> : <></>}
                     </div>
                 )

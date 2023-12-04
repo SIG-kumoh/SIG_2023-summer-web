@@ -28,7 +28,7 @@ function setColor(idx: number):string {
 }
 
 
-const width = 900
+const width = 1028
 const height = 550
 
 function makeTextArray(text:string, size: number) {
@@ -67,7 +67,7 @@ export default function BubbleChart() {
 
             const radiusScale = d3.scaleSqrt()
                 .domain([0, maxAmount])
-                .range([40, 90]);
+                .range([40, 75]);
 
             const myNodes:Array<expendTopic> = data.map((d, idx) => ({
                 ...d,
@@ -76,7 +76,7 @@ export default function BubbleChart() {
                 x: Math.random() * width,
                 y: Math.random() * height,
                 color: setColor(idx),
-                fontSize: 14
+                fontSize: 13
             }))
             return myNodes
         }
@@ -148,6 +148,8 @@ export default function BubbleChart() {
     }, [data])
 
     return(
-        <svg ref={svgRef}></svg>
+        <div>
+            <svg className="bubble_chart" ref={svgRef}></svg>
+        </div>
     )
 }

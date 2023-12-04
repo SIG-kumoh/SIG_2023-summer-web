@@ -50,11 +50,11 @@ export default function Chat(prop:ChatProps) {
             socket.on("join_room", (res: any) => {
             })
             socket.on("initialize", (res:any) => {
+                setMessages(res)
             })
             socket.on("leave_room", (res:any) => {
             })
             socket.on("message_disable", (res:any) => {
-                console.log(res)
                 setMessages(
                     preMessages => preMessages.map(m => {
                         if(m.id === res.message_id) {
