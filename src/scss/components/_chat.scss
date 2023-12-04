@@ -71,6 +71,9 @@
       .chat_send_button {
         border: none;
         background-color: $bg-color;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

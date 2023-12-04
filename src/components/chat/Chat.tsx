@@ -3,6 +3,7 @@ import {Socket, io} from "socket.io-client";
 import {loginStore} from "../../store";
 import {ChatURL, Message} from "../../config/config";
 import Messages from "./Messages";
+import {useNavigate} from "react-router-dom";
 
 interface ChatProps {
     room_name: string
@@ -10,7 +11,8 @@ interface ChatProps {
 export default function Chat(prop:ChatProps) {
     let room_name:string = prop.room_name
     const url = ChatURL
-    const {authorization} = loginStore()
+    const navigate = useNavigate()
+    const {authorization, isLoggedIn} = loginStore()
     const [text, setText] = useState<string>("")
     const [messages, setMessages] = useState<Message[]>([])
     const [socket, setSocket] = useState<Socket | null>(null)
@@ -86,6 +88,12 @@ export default function Chat(prop:ChatProps) {
                         placeholder="채팅..."
                         value={text}
                         maxLength={100}
+                        onFocus={() => {
+                            if(!isLoggedIn) {
+                                alert("로그인이 필요합니다.")
+                                navigate("/login")
+                            }
+                        }}
                         onChange={({ target: { value } }) => {
                             setText(value)
                             setCurLength(value.length)
