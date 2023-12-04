@@ -34,11 +34,19 @@
           flex-direction: column;
           justify-content: flex-end;
           color: #ffffff;
+
+          @include mobile {
+            display: none;
+          }
         }
 
         &:hover {
           .logo {
             display: block;
+
+            @include mobileToTablet {
+              display: none;
+            }
           }
         }
 
@@ -110,6 +118,14 @@
           margin-right: 2rem;
           cursor: pointer;
 
+          @include mobile {
+            margin-right: 2rem;
+          }
+
+          @include mobileToTablet {
+            margin-right: 1rem;
+          }
+
           &:first-child {
             margin-left: 10px;
           }
@@ -131,11 +147,24 @@
       .weather_widget {
         cursor: pointer;
         width: 20%;
+
+        @include mobile {
+          display: none;
+        }
+
+        @include mobileToTablet {
+          width: 40%;
+        }
+
+        @include tablet {
+          width: 30%;
+        }
+
         .hide {
           display: none;
         }
-        .weather_icon {
-          width:2rem;
+        .simple_weather_icon {
+          width:3rem;
         }
         .weather_container {
           background-color: #ffffff;
@@ -157,6 +186,10 @@
 
             .temperature {
               font-size: 1.5rem;
+            }
+
+            .weather_icon {
+              width: 2rem;
             }
           }
 

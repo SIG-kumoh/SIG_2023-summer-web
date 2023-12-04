@@ -50,8 +50,9 @@ export default function BubbleChart() {
     const center = { x: width / 2, y: height / 2 }
     const strength = 0.05
     const svgRef = useRef(null)
+
     useEffect(() => {
-        if (isLoading || isError) {
+        if (isLoading || isError || data.length == 0) {
             return
         }
         data.sort((a: Topic, b: Topic) => {

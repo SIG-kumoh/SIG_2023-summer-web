@@ -1,13 +1,38 @@
+@import "../utils/_util.scss";
+
 .topic_detail_under {
   display: flex;
 
   .topic_detail_left {
     width: 65%;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    @include mobileToTablet {
+      width: 100%;
+    }
+
+    @include tablet {
+      width: 100%;
+    }
   }
 
   .topic_detail_right {
     padding-left: 1rem;
     width: 35%;
-  }
 
+    @include mobile {
+      display: none;
+    }
+
+    @include mobileToTablet {
+      display: none;
+    }
+
+    @include tablet {
+      display: none;
+    }
+  }
 }
