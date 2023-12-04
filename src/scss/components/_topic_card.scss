@@ -7,6 +7,7 @@ a:nth-child(2) .card_body {
 .card_body {
   width: 100%;
   display: flex;
+
   border-top: 2px dashed gray;
   border-bottom: 4px solid #f4f6f8;
 
@@ -18,6 +19,18 @@ a:nth-child(2) .card_body {
     text-align: center;
     width: 20%;
     margin-right: 2rem;
+
+    @include break_point1 {
+      display: none;
+    }
+
+    @include break_point2 {
+      display: none;
+    }
+
+    @include break_point3 {
+      display: none;
+    }
 
     .card_body_img {
       padding: 1rem;
@@ -33,6 +46,21 @@ a:nth-child(2) .card_body {
     font-size: 1.4rem;
     margin: auto;
 
+    @include break_point1 {
+      font-size: 0.8rem;
+      width: 100%;
+    }
+
+    @include break_point2 {
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    @include break_point3 {
+      font-size: 1.2rem;
+      width: 100%;
+    }
+
     .topic_title {
       margin-top: 1rem;
       margin-right: 2rem;
@@ -42,6 +70,18 @@ a:nth-child(2) .card_body {
       margin: 1rem 2rem 0 0;
       font-size: 1rem;
       color: #666666;
+
+      @include break_point1 {
+        font-size: 0.4rem;
+      }
+
+      @include break_point2 {
+        font-size: 0.6rem;
+      }
+
+      @include break_point3 {
+        font-size: 0.8rem;
+      }
     }
 
     .topic_word_block {
@@ -50,19 +90,19 @@ a:nth-child(2) .card_body {
         font-size: 1rem;
         padding: 10px 15px;
         color: $light-cold-azure;
+
+        @include break_point1 {
+          font-size: 0.4rem;
+        }
+
+        @include break_point2 {
+          font-size: 0.6rem;
+        }
+
+        @include break_point3 {
+          font-size: 0.8rem;
+        }
       }
-    }
-  }
-
-  @include mobile {
-    .card_body_left {
-      width: 35%;
-      margin-right: 0;
-    }
-
-    .card_body_right{
-      width: 65%;
-      font-size: 1rem;
     }
   }
 }

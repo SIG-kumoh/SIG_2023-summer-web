@@ -6,15 +6,19 @@
   .topic_detail_left {
     width: 65%;
 
-    @include mobile {
+    @include break_point1 {
       width: 100%;
     }
 
-    @include mobileToTablet {
+    @include break_point2 {
       width: 100%;
     }
 
-    @include tablet {
+    @include break_point3 {
+      width: 100%;
+    }
+
+    @include break_point4 {
       width: 100%;
     }
   }
@@ -23,15 +27,19 @@
     padding-left: 1rem;
     width: 35%;
 
-    @include mobile {
+    @include break_point1 {
       display: none;
     }
 
-    @include mobileToTablet {
+    @include break_point2 {
       display: none;
     }
 
-    @include tablet {
+    @include break_point3 {
+      display: none;
+    }
+
+    @include break_point4 {
       display: none;
     }
   }

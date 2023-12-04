@@ -9,7 +9,19 @@
 
   .topic_word {
     padding: 0.5rem;
-    color: $light-cold-azure
+    color: $light-cold-azure;
+
+    @include break_point1 {
+      font-size: 0.4rem;
+    }
+
+    @include break_point2 {
+      font-size: 0.6rem;
+    }
+
+    @include break_point3 {
+      font-size: 0.8rem;
+    }
   }
 }
 
@@ -26,6 +38,18 @@
     width: 30%;
     max-height: 30%;
 
+    @include break_point1 {
+      display: none;
+    }
+
+    @include break_point2 {
+      display: none;
+    }
+
+    @include break_point3 {
+      display: none;
+    }
+
     .topic_img {
       object-fit: scale-down;
       width: 100%;
@@ -37,37 +61,50 @@
   .topic_text {
     width: 63%;
 
+    @include break_point1 {
+      width: 100%;
+    }
+
+    @include break_point2 {
+      width: 100%;
+    }
+
+    @include break_point3 {
+      width: 100%;
+    }
+
     .topic_title {
       font-size: 1.5rem;
       font-weight: bold ;
+
+      @include break_point1 {
+        font-size: 0.8rem;
+      }
+
+      @include break_point2 {
+        font-size: 1rem;
+      }
+
+      @include break_point3 {
+        font-size: 1.3rem;
+      }
     }
 
     .topic_summary_content {
       margin-top: 2rem;
       font-size: 1.1rem;
       line-height: 1.8rem;
-    }
-  }
 
+      @include break_point1 {
+        font-size: 0.5rem;
+      }
 
-  @include mobile {
-    .topic_title {
-      font-size: 1.4rem;
-    }
+      @include break_point2 {
+        font-size: 0.7rem;
+      }
 
-    .topic_summary {
-      font-size: 1.2rem;
-    }
-
-    .topic_summary_content {
-      font-size: 1rem;
-    }
-
-    .news_container {
-      font-size: 1.2rem;
-
-      .news {
-        font-size: 1rem;
+      @include break_point3 {
+        font-size: 0.9rem;
       }
     }
   }
