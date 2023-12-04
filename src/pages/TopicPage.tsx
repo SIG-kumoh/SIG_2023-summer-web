@@ -25,7 +25,6 @@ export default function TopicPage() {
     const reqURL = BaseURL + "/news/section?sid=" + detail.section_id + "&date=" + GetTodayDate()
     const {data, isLoading, isError} =
         useQuery(['topic', detail.name], () => GetServerData(reqURL))
-    console.log(data)
     const [page, setPage] = useState<number>( 1)
     const changePage = useCallback((page:number) => setPage(page), [])
     const location = useLocation()
