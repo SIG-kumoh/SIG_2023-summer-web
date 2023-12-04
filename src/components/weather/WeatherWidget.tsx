@@ -30,9 +30,8 @@ export default function WeatherWidget() {
             }
         };
 
-        fetchWeatherData();
+        fetchWeatherData().then();
     }, []);
-    // TODO 요청 비동기화
     let fcstTime: string = "";
     let temperature: number = 0;
     let minTemperature: number = 10000;
@@ -49,7 +48,6 @@ export default function WeatherWidget() {
         return <div>날씨 정보를 받아올 수 없습니다.</div>;
     }
     const weatherData:Array<Weather> = []
-    //console.log(weatherData)
     for (let i = 0; i < resBody.length && resBody[i].baseDate === resBody[i].fcstDate; i++) {
         const e: any = resBody[i];
 
@@ -77,6 +75,16 @@ export default function WeatherWidget() {
         }
     }
 
+    const curHour = new Date().getHours()
+    for (let i = 0; i < weatherData.length; i++) {
+        const fcstTime = parseInt(weatherData[i].fcstTime.slice(0, 2))
+        if (fcstTime < curHour) {
+            weatherData.splice(i--, 1)
+        } else {
+            break
+        }
+    }
+
     function onClick(e:React.MouseEvent) {
         setClick(!click)
     }
@@ -85,7 +93,7 @@ export default function WeatherWidget() {
             <div className="weather_container">
                 <div className="simple_weather_info">
                     <div className="locate_info">경북 구미시</div>
-                    <img className="weather_icon" src={imageSelector(weatherData[0])} alt=""/>
+                    <img className="simple_weather_icon" src={imageSelector(weatherData[0])} alt=""/>
                     <div className="temperature">{weatherData[0].temperature} °C</div>
                 </div>
                 <div className={click ? "weather_info hide" : "weather_info"}>
@@ -127,9 +135,9 @@ function createFcstValue(weatherData: Array<Weather>) {
 }
 
 function weatherStatusSelector(statCode: number) {
-    if (statCode === 1) {
+    if (statCode == 1) {
         return "맑음"
-    } else if (statCode === 3) {
+    } else if (statCode == 3) {
         return "구름많음"
     } else {
         return "흐림"
@@ -176,19 +184,19 @@ function imageSelector(weather: Weather) {
 }
 
 function hourSelector(hour: number) {
-    if (0 <= hour && hour < 2) {
+    if (0 <= hour && hour <= 2) {
         return '0200'
-    } else if (2 <= hour && hour < 5) {
+    } else if (2 < hour && hour <= 5) {
         return '0200'
-    } else if (5 <= hour && hour < 8) {
+    } else if (5 < hour && hour <= 8) {
         return '0500'
-    } else if (8 <= hour && hour < 11) {
+    } else if (8 < hour && hour <= 11) {
         return '0800'
-    } else if (11 <= hour && hour < 14) {
+    } else if (11 < hour && hour <= 14) {
         return '1100'
-    } else if (14 <= hour && hour < 17) {
+    } else if (14 < hour && hour <= 17) {
         return '1400'
-    } else if (17 <= hour && hour < 20) {
+    } else if (17 < hour && hour <= 20) {
         return '1700'
     } else {
         return '2000';
@@ -196,6 +204,7 @@ function hourSelector(hour: number) {
 }
 
 async function getWeatherData(today : Date) :Promise<ApiResponse> {
+    const serviceKey: string = process.env.WEATHER_SERVICE_KEY!
 
     const year: number = today.getFullYear();
     const month: number = today.getMonth() + 1;
@@ -209,7 +218,7 @@ async function getWeatherData(today : Date) :Promise<ApiResponse> {
 
     const url:string = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
     const queryParams = new URLSearchParams({
-        serviceKey: '', //service key here
+        serviceKey: serviceKey,
         pageNo: '1',
         numOfRows: '1000',
         dataType: 'JSON',
@@ -218,7 +227,7 @@ async function getWeatherData(today : Date) :Promise<ApiResponse> {
         nx: '84',
         ny: '96',
     });
-    const data = await fetch(`${url}?${queryParams}`).then((res) => res.json());
+    const data = await fetch(`${url}?${queryParams}`).then((res) => res.json())
 
     return data
 }

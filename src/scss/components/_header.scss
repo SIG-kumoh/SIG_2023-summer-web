@@ -134,8 +134,8 @@
         .hide {
           display: none;
         }
-        .weather_icon {
-          width:2rem;
+        .simple_weather_icon {
+          width:3rem;
         }
         .weather_container {
           background-color: #ffffff;
@@ -157,6 +157,10 @@
 
             .temperature {
               font-size: 1.5rem;
+            }
+
+            .weather_icon {
+              width: 2rem;
             }
           }
 
