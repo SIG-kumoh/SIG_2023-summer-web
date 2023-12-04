@@ -1,4 +1,5 @@
 @import "../config/color.scss";
+@import "../utils/_util.scss";
 
 .news_container {
   font-size: 1.5rem;
@@ -39,6 +40,19 @@
       .news_img_box {
         width: 30%;
         height: 100%;
+
+        @include break_point1 {
+          display: none;
+        }
+
+        @include break_point2 {
+          display: none;
+        }
+
+        @include break_point3 {
+          display: none;
+        }
+
         img {
           width: 100%;
           height: 100%;
@@ -55,9 +69,33 @@
         margin-left: 1rem;
         width: 70%;
 
+        @include break_point1 {
+          width: 100%;
+        }
+
+        @include break_point2 {
+          width: 100%;
+        }
+
+        @include break_point3 {
+          width: 100%;
+        }
+
         .news_title {
           margin-top: 1rem;
           cursor: pointer;
+
+          @include break_point1 {
+            font-size: 0.6rem;
+          }
+
+          @include break_point2 {
+            font-size: 0.8rem;
+          }
+
+          @include break_point3 {
+            font-size: 1rem;
+          }
         }
 
         .news_content {
@@ -66,6 +104,18 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+
+          @include break_point1 {
+            font-size: 0.4rem;
+          }
+
+          @include break_point2 {
+            font-size: 0.6rem;
+          }
+
+          @include break_point3 {
+            font-size: 0.8rem;
+          }
         }
 
         .news_under_box {
@@ -75,10 +125,34 @@
             font-size: 0.8rem;
             padding-right: 1rem;
             border-right: 1px solid #cccccc;
+
+            @include break_point1 {
+              font-size: 0.2rem;
+            }
+
+            @include break_point2 {
+              font-size: 0.4rem;
+            }
+
+            @include break_point3 {
+              font-size: 0.6rem;
+            }
           }
           .news_date {
             font-size: 0.8rem;
             margin-left: 1rem;
+
+            @include break_point1 {
+              font-size: 0.2rem;
+            }
+
+            @include break_point2 {
+              font-size: 0.4rem;
+            }
+
+            @include break_point3 {
+              font-size: 0.6rem;
+            }
           }
         }
       }
