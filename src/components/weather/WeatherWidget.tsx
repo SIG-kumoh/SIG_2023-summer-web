@@ -47,8 +47,9 @@ export default function WeatherWidget() {
     if (error) {
         return <div>날씨 정보를 받아올 수 없습니다.</div>;
     }
+
     const weatherData:Array<Weather> = []
-    for (let i = 0; i < resBody.length && resBody[i].baseDate === resBody[i].fcstDate; i++) {
+    for (let i = 0; i < resBody.length && i < 12 * 6; i++) {
         const e: any = resBody[i];
 
         if (i !== 0 && i % 12 === 0) {
@@ -185,7 +186,7 @@ function imageSelector(weather: Weather) {
 
 function hourSelector(hour: number) {
     if (0 <= hour && hour <= 2) {
-        return '0200'
+        return '2300'
     } else if (2 < hour && hour <= 5) {
         return '0200'
     } else if (5 < hour && hour <= 8) {
@@ -204,8 +205,11 @@ function hourSelector(hour: number) {
 }
 
 async function getWeatherData(today : Date) :Promise<ApiResponse> {
-    const serviceKey: string = process.env.WEATHER_SERVICE_KEY!
+    const serviceKey: string = process.env.REACT_APP_WEATHER_SERVICE_KEY!
 
+    if (0 <= today.getHours() && today.getHours() < 2) {
+        today.setDate(today.getDate() - 1)
+    }
     const year: number = today.getFullYear();
     const month: number = today.getMonth() + 1;
     const day: number = today.getDate();
