@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import {GetTodayDateAndTime, News} from "../../config/config";
+import {BaseURL, GetTodayDateAndTime, News} from "../../config/config";
 import React from "react";
+import {loginStore} from "../../store";
 
 
 export default function TopicNews(page: number, itemsCountPerPage: number, news:Array<News>) {
@@ -22,7 +23,7 @@ function createTopicNews(page: number, itemsCountPerPage:number, data: Array<New
         result.push(
             <li className="news" key={news.url}>
                 <Link to={news.url} target="_blank">
-                    <NewsCard title={news.title} url={news.url} imgUrl={news.imgUrl} regdate={news.regdate} press={news.press} content={news.content}/>
+                    <NewsCard title={news.title} url={news.url} imgUrl={news.imgUrl} regdate={news.regdate} press={news.press} content={news.content} articleId={news.articleId}/>
                 </Link>
             </li>
         )
@@ -32,6 +33,32 @@ function createTopicNews(page: number, itemsCountPerPage:number, data: Array<New
 }
 
 function NewsCard(data:News) {
+    const {authority, authorization} = loginStore()
+    const alertConfirm = (e: React.MouseEvent) => {
+        e.preventDefault()
+        if(window.confirm("뉴스기사 \"" + data.title + "\"을/를 정말 삭제하시겠습니까?")) {
+            deleteTopic()
+        } else {
+        }
+    }
+    const deleteTopic = () => {
+        fetch(BaseURL + "/news/article?aid=" + data.articleId, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": authorization
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                alert("삭제되었습니다.")
+                window.location.reload()
+            } else {
+                alert("삭제에 실패했습니다.")
+            }
+        }).catch(err => {
+            alert("삭제에 실패했습니다.")
+        })
+    }
     return(
         <div className="news_card">
             <div className="news_img_box">
@@ -45,6 +72,7 @@ function NewsCard(data:News) {
                     <div className="news_date">{GetTodayDateAndTime(data.regdate)}</div>
                 </div>
             </div>
+            {authority === 'admin' ? <button onClick={e => alertConfirm(e)} className="admin_delete_button">🗑️</button> : <></>}
         </div>
     )
 }

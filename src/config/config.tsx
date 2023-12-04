@@ -12,9 +12,9 @@ export const Categories:Array<Detail> = [{url: "/", name: "홈", idx:0, section_
 export interface Topic {
     title:string, summary:string, imgUrl:string, clusterId:number, chatNamespace:string, relatedClusterId:number, articleList:Array<News>, size:number, words:Array<string>
 }
-
-export const BaseURL = "http://202.31.202.34:80/api"
-export const ChatURL = "http://202.31.202.34:80/socket.io/conn"
+export const ServerURL = "http://202.31.202.34:80/"
+export const BaseURL = ServerURL + "api"
+export const ChatURL = ServerURL + "socket.io/conn"
 
 export async function GetServerData(url:string) {
     const topicData = await fetch(url)
@@ -30,7 +30,7 @@ export async function GetServerDataWithAuthorization(url:string, authorization:s
     }).then(res => res.json())
 }
 export interface News {
-    title:string, url:string, imgUrl:string, press:string, regdate:string, content:string
+    title:string, url:string, imgUrl:string, press:string, regdate:string, content:string, articleId:number
 }
 
 export function GetTodayDate() {

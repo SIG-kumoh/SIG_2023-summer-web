@@ -33,13 +33,11 @@ export default function Chat(prop:ChatProps) {
         setSocket(socketInstance)
 
         socketInstance.emit('join_room', {"room": room_name}, (err:Error) => {
-            console.log("join_room")
             if (err) {
                 alert(err);
             }
         });
         return () => {
-            console.log("disconnect")
             socketInstance.disconnect()
         }
     }, [url, room_name]);
@@ -47,7 +45,6 @@ export default function Chat(prop:ChatProps) {
     useEffect(() => {
         if (socket) {
             socket.on("message", (message: Message) => {
-                console.log(message)
                 setMessages(preMessages => [...preMessages, message]);
             });
             socket.on("join_room", (res: any) => {
@@ -57,6 +54,15 @@ export default function Chat(prop:ChatProps) {
             socket.on("leave_room", (res:any) => {
             })
             socket.on("message_disable", (res:any) => {
+                console.log(res)
+                setMessages(
+                    preMessages => preMessages.map(m => {
+                        if(m.id === res.message_id) {
+                            m.activated = 0
+                        }
+                        return m
+                    })
+                )
             })
         }
 
@@ -79,7 +85,7 @@ export default function Chat(prop:ChatProps) {
 
     return (
         <div className='chat_container'>
-            <Messages messages={messages} />
+            <Messages messages={messages} room_name={room_name} />
             <div className="chat_input_container">
                 <form className="form">
                     <input

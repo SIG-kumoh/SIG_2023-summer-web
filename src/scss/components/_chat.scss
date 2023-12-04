@@ -25,6 +25,7 @@
       display: flex;
       margin-bottom: 0.5rem;
       padding: 0.3rem;
+      position: relative;
       &:hover {
         background-color: #cccccc;
         border-radius: 10px;
@@ -38,6 +39,20 @@
         font-size: 1rem;
         color: #000000;
         word-break: break-all;
+      }
+
+      .admin_delete_button {
+        position: absolute;
+        border-radius: 10px;
+        bottom: 0;
+        right: 0;
+        font-size: 1rem;
+        border: 1px solid $dark-clay;
+        background-color: $bg-color;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
