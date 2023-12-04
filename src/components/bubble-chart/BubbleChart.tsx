@@ -29,7 +29,7 @@ function setColor(idx: number):string {
 
 
 const width = 900
-const height = 600
+const height = 550
 
 function makeTextArray(text:string, size: number) {
     const textLength = size * 0.6

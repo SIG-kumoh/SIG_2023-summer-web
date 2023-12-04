@@ -18,6 +18,23 @@
       display: flex;
       justify-content: space-between;
       height: 8rem;
+      position: relative;
+
+
+      .admin_delete_button {
+        position: absolute;
+        border-radius: 10px;
+        padding: 0.1rem;
+        bottom: 0;
+        right: 0;
+        font-size: 1rem;
+        border: 1px solid $dark-clay;
+        background-color: $bg-color;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
 
       .news_img_box {
         width: 30%;

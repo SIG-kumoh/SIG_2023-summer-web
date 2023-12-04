@@ -30,7 +30,7 @@ export async function GetServerDataWithAuthorization(url:string, authorization:s
     }).then(res => res.json())
 }
 export interface News {
-    title:string, url:string, imgUrl:string, press:string, regdate:string, content:string
+    title:string, url:string, imgUrl:string, press:string, regdate:string, content:string, articleId:number
 }
 
 export function GetTodayDate() {

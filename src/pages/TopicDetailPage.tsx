@@ -12,6 +12,7 @@ export default function TopicDetailPage() {
     const topic_id = useParams()
     const reqURL = BaseURL + "/news/cluster?cid=" + topic_id.topicId
     const {data, isLoading, isError} = useQuery([topic_id], () => GetServerData(reqURL))
+    console.log(data)
     const [page, setPage] = useState<number>(1)
     const changePage = useCallback((page: number) => {setPage(page)}, [])
     const location = useLocation()

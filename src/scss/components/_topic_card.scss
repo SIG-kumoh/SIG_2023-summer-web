@@ -1,68 +1,89 @@
 @import "../utils/_util.scss";
+@import "../config/_color.scss";
 
-a:nth-child(2) .card_body {
-  border-top: none;
-}
+.topic_card_container {
+  position: relative;
 
-.card_body {
-  width: 100%;
-  display: flex;
-  border-top: 2px dashed gray;
-  border-bottom: 4px solid #f4f6f8;
+  .admin_delete_button {
+    position: absolute;
+    border-radius: 10px;
+    padding: 0.3rem;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    font-size: 1rem;
+    border: 1px solid $dark-clay;
+    background-color: $bg-color;
 
-  &:hover .topic_title {
-    text-decoration: underline;
-  }
-
-  .card_body_left {
-    text-align: center;
-    width: 20%;
-    margin-right: 2rem;
-
-    .card_body_img {
-      padding: 1rem;
-      width: 100%;
-      height: 10rem;
-      object-fit: fill;
-      border-radius: 32px;
+    &:hover {
+      cursor: pointer;
     }
   }
+  a:nth-child(2) .card_body {
+    border-top: none;
+  }
 
-  .card_body_right {
-    width: 80%;
-    font-size: 1.4rem;
-    margin: auto;
+  .card_body {
+    width: 100%;
+    display: flex;
+    border-top: 2px dashed gray;
+    border-bottom: 4px solid #f4f6f8;
 
-    .topic_title {
-      margin-top: 1rem;
+    &:hover .topic_title {
+      text-decoration: underline;
+    }
+
+    .card_body_left {
+      text-align: center;
+      width: 20%;
       margin-right: 2rem;
+
+      .card_body_img {
+        padding: 1rem;
+        width: 100%;
+        height: 10rem;
+        object-fit: fill;
+        border-radius: 32px;
+      }
     }
 
-    .topic_summary {
-      margin: 1rem 2rem 0 0;
-      font-size: 1rem;
-      color: #666666;
-    }
+    .card_body_right {
+      width: 80%;
+      font-size: 1.4rem;
+      margin: auto;
 
-    .topic_word_block {
-      display: flex;
-      .topic_words {
+      .topic_title {
+        margin-top: 1rem;
+        margin-right: 2rem;
+      }
+
+      .topic_summary {
+        margin: 1rem 2rem 0 0;
         font-size: 1rem;
-        padding: 10px 15px;
-        color: $light-cold-azure;
+        color: #666666;
+      }
+
+      .topic_word_block {
+        display: flex;
+        .topic_words {
+          font-size: 1rem;
+          padding: 10px 15px;
+          color: $light-cold-azure;
+        }
+      }
+    }
+
+    @include mobile {
+      .card_body_left {
+        width: 35%;
+        margin-right: 0;
+      }
+
+      .card_body_right{
+        width: 65%;
+        font-size: 1rem;
       }
     }
   }
-
-  @include mobile {
-    .card_body_left {
-      width: 35%;
-      margin-right: 0;
-    }
-
-    .card_body_right{
-      width: 65%;
-      font-size: 1rem;
-    }
-  }
 }
+
