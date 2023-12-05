@@ -43,6 +43,7 @@ ul {
   margin: 0 auto;
   padding: 1rem;
   padding-top: 2rem;
+  position: relative;
   z-index: 1;
   @include break_point1 {
     .bubble_chart{
