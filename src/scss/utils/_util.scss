@@ -1,7 +1,6 @@
-$break_point1: 450px;
-$break_point2: 560px;
-$break_point3: 768px;
-$break_point4: 970px;
+$break_point1: 560px;
+$break_point2: 768px;
+$break_point3: 970px;
 
 @mixin break_point1 {
   @media (min-width: #{0px}) and (max-width: #{$break_point1 - 1px}) {
@@ -17,12 +16,6 @@ $break_point4: 970px;
 
 @mixin break_point3 {
   @media (min-width: #{$break_point2}) and (max-width: #{$break_point3 - 1px}) {
-    @content
-  }
-}
-
-@mixin break_point4 {
-  @media (min-width: #{$break_point3}) and (max-width: #{$break_point4 - 1px}) {
     @content
   }
 }

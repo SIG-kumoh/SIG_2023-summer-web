@@ -28,7 +28,6 @@
     width: 100%;
     display: flex;
     border-top: 2px dashed gray;
-    border-bottom: 4px solid #f4f6f8;
 
     &:hover .topic_title {
       text-decoration: underline;
@@ -40,15 +39,18 @@
       margin-right: 2rem;
 
       @include break_point1 {
-        display: none;
+        width: 50%;
+        margin-right: 0;
       }
 
       @include break_point2 {
-        display: none;
+        width: 50%;
+        margin-right: 0;
       }
 
       @include break_point3 {
-        display: none;
+        width: 50%;
+        margin-right: 0;
       }
 
       .card_body_img {
@@ -57,6 +59,13 @@
         height: 10rem;
         object-fit: fill;
         border-radius: 32px;
+
+        @include break_point1 {
+          border-radius: 20px;
+          padding: 0.5rem;
+          width: 100%;
+          height: 7rem;
+        }
       }
     }
 
@@ -66,7 +75,7 @@
       margin: auto;
 
       @include break_point1 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         width: 100%;
       }
 
@@ -83,6 +92,18 @@
       .topic_title {
         margin-top: 1rem;
         margin-right: 2rem;
+        @include break_point1 {
+          margin-right: 0;
+          font-size: 1rem;
+        }
+        @include break_point2 {
+          margin-right: 0;
+          font-size: 1rem;
+        }
+        @include break_point3 {
+          margin-right: 0;
+          font-size: 1.2rem;
+        }
       }
 
       .topic_summary {
@@ -91,15 +112,17 @@
         color: #666666;
 
         @include break_point1 {
-          font-size: 0.4rem;
+          display: none;
         }
 
         @include break_point2 {
-          font-size: 0.6rem;
+          margin-right: 0;
+          font-size: 0.8rem;
         }
 
         @include break_point3 {
-          font-size: 0.8rem;
+          margin-right: 0;
+          font-size: 1rem;
         }
       }
 
@@ -112,15 +135,16 @@
           color: $light-cold-azure;
 
           @include break_point1 {
-            font-size: 0.4rem;
+            font-size: 0.6rem;
+            padding: 10px 7px;
           }
 
           @include break_point2 {
-            font-size: 0.6rem;
+            font-size: 0.8rem;
           }
 
           @include break_point3 {
-            font-size: 0.8rem;
+            font-size: 1rem;
           }
         }
       }

@@ -16,6 +16,7 @@ export default function HeaderTop() {
         setIsLoggedIn(false)
         setAuthority([])
         setAuthorization("")
+        setCur(0)
         navi("/")
         window.location.reload()
     }

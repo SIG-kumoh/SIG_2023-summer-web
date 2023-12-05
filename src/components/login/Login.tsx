@@ -35,8 +35,9 @@ export default function Login() {
             setAuthority(res.authorities)
             setUsername(res.username)
             setIsLoggedIn(true)
+            setCur(0)
             navigate("/")
-            window.location.reload()
+            //window.location.reload()
         })
     }
     return(

@@ -17,10 +17,6 @@
     @include break_point3 {
       width: 100%;
     }
-
-    @include break_point4 {
-      width: 100%;
-    }
   }
 
   .topic_detail_right {
@@ -36,10 +32,6 @@
     }
 
     @include break_point3 {
-      display: none;
-    }
-
-    @include break_point4 {
       display: none;
     }
   }

@@ -44,6 +44,11 @@ ul {
   padding: 1rem;
   padding-top: 2rem;
   z-index: 1;
+  @include break_point1 {
+    .bubble_chart{
+      display: none;
+    }
+  }
   .category_name {
     font-weight: bold;
     margin-bottom: 2rem;

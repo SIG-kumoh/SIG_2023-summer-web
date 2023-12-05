@@ -12,6 +12,10 @@
   align-items: center;
   color: #ffffff;
 
+  @include break_point1 {
+    width: 80%;
+  }
+
   .login_inner {
     width: 70%;
     margin: 1rem;
@@ -23,7 +27,7 @@
       color: #ffffff;
 
       @include break_point1 {
-        font-size: 1rem;
+        font-size: 1.3rem;
       }
 
       @include break_point2 {
@@ -39,6 +43,11 @@
       border: #ffffff solid 1px;
       border-radius: 10px;
       margin: 4rem 0;
+
+      @include break_point1 {
+        margin: 2rem 0;
+      }
+
       .login_input_box {
         display: flex;
 
@@ -101,7 +110,7 @@
       color: #ffffff;
 
       @include break_point1 {
-        font-size: 0.4rem;
+        font-size: 0.6rem;
       }
 
       @include break_point2 {

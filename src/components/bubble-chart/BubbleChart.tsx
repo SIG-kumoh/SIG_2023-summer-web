@@ -148,6 +148,6 @@ export default function BubbleChart() {
     }, [data])
 
     return(
-        isLoading ? <Loading></Loading> : <svg className="bubble_chart" ref={svgRef}></svg>
+        isLoading ? <Loading></Loading> : <div><svg className="bubble_chart" ref={svgRef}></svg></div>
     )
 }

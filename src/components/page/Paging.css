@@ -48,3 +48,9 @@ ul.pagination li.active a {
     color: var(--maincolor);
     text-decoration: underline;
 }
+
+@media screen and (width < 450px) {
+    ul.pagination li a {
+        font-size: 0.9rem;
+    }
+}
