@@ -49,17 +49,26 @@ export default function WeatherWidget() {
     }
 
     const weatherData:Array<Weather> = []
-    for (let i = 0; i < resBody.length && i < 12 * 6; i++) {
+    const curHour = new Date().getHours()
+    let pushFlag: boolean = false
+    for (let i = 0; i < resBody.length && weatherData.length < 5; i++) {
         const e: any = resBody[i];
 
         if (i !== 0 && i % 12 === 0) {
-            weatherData.push({
-                fcstTime: fcstTime,
-                temperature: temperature,
-                rainPercent: rainPercent,
-                weatherStatus: weatherStatus,
-                rainStatus: rainStatus
-            })
+            const fcstTimeVal = parseInt(fcstTime.slice(0, 2))
+            if (curHour === fcstTimeVal) {
+                pushFlag = true
+            }
+
+            if (pushFlag) {
+                weatherData.push({
+                    fcstTime: fcstTime,
+                    temperature: temperature,
+                    rainPercent: rainPercent,
+                    weatherStatus: weatherStatus,
+                    rainStatus: rainStatus
+                })
+            }
         }
 
         fcstTime = e.fcstTime;
@@ -73,16 +82,6 @@ export default function WeatherWidget() {
             weatherStatus = weatherStatusSelector(e.fcstValue);
         } else if (e.category === "PTY") {
             rainStatus = rainStatusSelector(e.fcstValue);
-        }
-    }
-
-    const curHour = new Date().getHours()
-    for (let i = 0; i < weatherData.length; i++) {
-        const fcstTime = parseInt(weatherData[i].fcstTime.slice(0, 2))
-        if (fcstTime < curHour) {
-            weatherData.splice(i--, 1)
-        } else {
-            break
         }
     }
 
