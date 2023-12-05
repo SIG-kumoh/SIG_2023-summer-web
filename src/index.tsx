@@ -25,22 +25,20 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-              <Header/>
-              <div className="background">
-                  <Routes>
-                      <Route path="/" element={<MainPage/>}/>
-                      <Route path="/:categoryIdx" element={<TopicPage/>}/>
-                      <Route path="/topic-page/:topicId" element={<TopicDetailPage/>}/>
-                      <Route path="/login" element={<LoginPage/>}/>
-                      <Route path="/user/:state" element={<UserManagePage/>}/>
-                  </Routes>
-              </div>
-          </BrowserRouter>
-      </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+          <Header/>
+          <div className="background">
+              <Routes>
+                  <Route path="/" element={<MainPage/>}/>
+                  <Route path="/:categoryIdx" element={<TopicPage/>}/>
+                  <Route path="/topic-page/:topicId" element={<TopicDetailPage/>}/>
+                  <Route path="/login" element={<LoginPage/>}/>
+                  <Route path="/user/:state" element={<UserManagePage/>}/>
+              </Routes>
+          </div>
+      </BrowserRouter>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
