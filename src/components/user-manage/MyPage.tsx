@@ -2,13 +2,13 @@ import Id from "./Id";
 import Pw from "./Pw";
 import {useState} from "react";
 import {BaseURL} from "../../config/config";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 import {useNavigate} from "react-router-dom";
 import {PostLogout} from "../../config/post_method";
 
 export default function MyPage() {
     const [pw, setPw] = useState<string>('')
-    const {username, authorization, setIsLoggedIn, setAuthorization, setAuthority, setUsername} = loginStore()
+    const {username, authorization, setIsLoggedIn, setAuthorization, setAuthority} = usePageStore()
     const navigate = useNavigate()
     const changePw = (e:React.MouseEvent) => {
         e.preventDefault()

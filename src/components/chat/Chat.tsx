@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Socket, io} from "socket.io-client";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 import {ChatURL, Message} from "../../config/config";
 import Messages from "./Messages";
 import {useNavigate} from "react-router-dom";
@@ -12,7 +12,7 @@ export default function Chat(prop:ChatProps) {
     let room_name:string = prop.room_name
     const url = ChatURL
     const navigate = useNavigate()
-    const {authorization, isLoggedIn} = loginStore()
+    const {authorization, isLoggedIn} = usePageStore()
     const [text, setText] = useState<string>("")
     const [messages, setMessages] = useState<Message[]>([])
     const [socket, setSocket] = useState<Socket | null>(null)

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {BaseURL, GetTodayDateAndTime, News} from "../../config/config";
 import React from "react";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 
 
 export default function TopicNews(page: number, itemsCountPerPage: number, news:Array<News>) {
@@ -33,7 +33,7 @@ function createTopicNews(page: number, itemsCountPerPage:number, data: Array<New
 }
 
 function NewsCard(data:News) {
-    const {authority, authorization} = loginStore()
+    const {authority, authorization} = usePageStore()
     const alertConfirm = (e: React.MouseEvent) => {
         e.preventDefault()
         if(window.confirm("뉴스기사 \"" + data.title + "\"을/를 정말 삭제하시겠습니까?")) {
@@ -62,7 +62,7 @@ function NewsCard(data:News) {
     return(
         <div className="news_card">
             <div className="news_img_box">
-                <img src={data.imgUrl}/>
+                <img src={data.imgUrl} alt='/img/오늘의뉴스.png'/>
             </div>
             <div className="news_text_box">
                 <div className="news_title">{data.title}</div>

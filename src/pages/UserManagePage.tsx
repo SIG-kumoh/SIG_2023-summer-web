@@ -1,12 +1,12 @@
 import SignUp from "../components/user-manage/SignUp";
 import {useParams} from "react-router-dom";
 import MyPage from "../components/user-manage/MyPage";
-import {loginStore} from "../store";
+import {usePageStore} from "../store";
 
 export default function UserManagePage() {
     const location = useParams()
     let title = ''
-    const {isLoggedIn} = loginStore()
+    const {isLoggedIn} = usePageStore()
 
     if (location.state === 'sign-up') {
         title = '회원 가입'

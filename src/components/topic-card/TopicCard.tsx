@@ -1,9 +1,9 @@
 import {BaseURL, Topic} from "../../config/config";
 import {Link} from "react-router-dom";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 
 export default function TopicCard(topic:Topic) {
-    const {authority, authorization} = loginStore()
+    const {authority, authorization} = usePageStore()
 
     const alertConfirm = (e: React.MouseEvent) => {
         e.preventDefault()

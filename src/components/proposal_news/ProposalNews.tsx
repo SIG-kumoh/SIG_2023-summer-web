@@ -1,10 +1,10 @@
 import {useQuery} from "react-query";
 import {BaseURL, GetServerDataWithAuthorization, GetTodayDate, Topic} from "../../config/config";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 import {Link} from "react-router-dom";
 
 export default function ProposalNews() {
-    const {authorization, username} = loginStore()
+    const {authorization, username} = usePageStore()
     const {data, isLoading, isError} = useQuery(['proposal', username], () => GetServerDataWithAuthorization(BaseURL + "/news/proposal?date=" + GetTodayDate(), authorization))
     if(isLoading || isError) {
         return(
