@@ -39,8 +39,8 @@ export function GetTodayDate() {
     let year = today.getFullYear();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    //return year + "-" + month + "-" + day
-    return "2023-11-27"
+    //return "2023-11-27"
+    return year + "-" + month + "-" + day
 }
 
 export function GetTodayDateAndTime(cur:string):string {
@@ -63,3 +63,17 @@ export interface Node {
     id: number, title: string, regdate:string, topic: Array<string>, idx:number
 }
 
+export function Loading() {
+        return(
+            <div className="wrapper">
+            <div className="box-wrap">
+                <div className="box one"></div>
+                <div className="box two"></div>
+                <div className="box three"></div>
+                <div className="box four"></div>
+                <div className="box five"></div>
+                <div className="box six"></div>
+            </div>
+        </div>)
+
+}

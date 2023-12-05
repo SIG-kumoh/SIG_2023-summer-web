@@ -1,4 +1,4 @@
-import {GetServerData, BaseURL, Categories, Detail, Topic, GetTodayDate} from "../config/config";
+import {GetServerData, BaseURL, Categories, Detail, Topic, GetTodayDate, Loading} from "../config/config";
 import TopicCard from "../components/topic-card/TopicCard";
 import {useQuery} from 'react-query';
 import {usePageStore} from "../store";
@@ -46,11 +46,19 @@ export default function TopicPage() {
     useEffect(() => {
         setPage(1)
     }, [location]);
-
-    if (isLoading || isError) {
+    if(isLoading) {
         return(
             <div className="container">
                 <div className="category_name">{detail.name}</div>
+                <Loading/>
+            </div>
+        )
+    }
+    if (isError) {
+        return(
+            <div className="container">
+                <div className="category_name">{detail.name}</div>
+                <div className="category_name">서버로부터 응답이 없습니다</div>
             </div>
         )
     }

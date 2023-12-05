@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import {useEffect, useRef} from "react";
-import {BaseURL, GetServerData, GetTodayDate, News, Topic} from "../../config/config";
+import {BaseURL, GetServerData, GetTodayDate, Loading, News, Topic} from "../../config/config";
 import {useQuery} from "react-query";
 import {useNavigate} from "react-router-dom";
 
@@ -148,8 +148,6 @@ export default function BubbleChart() {
     }, [data])
 
     return(
-        <div>
-            <svg className="bubble_chart" ref={svgRef}></svg>
-        </div>
+        isLoading ? <Loading></Loading> : <svg className="bubble_chart" ref={svgRef}></svg>
     )
 }

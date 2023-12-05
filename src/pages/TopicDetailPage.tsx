@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import TopicNews from "../components/topic-detail-card/TopicNews";
 import RelationNews from "../components/topic-detail-card/RelationNews";
 import {useLocation, useParams} from "react-router-dom";
-import {BaseURL, GetServerData} from "../config/config";
+import {BaseURL, GetServerData, Loading} from "../config/config";
 import {useQuery} from "react-query";
 import Paging from "../components/page/Paging";
 import Chat from "../components/chat/Chat";
@@ -29,8 +29,14 @@ export default function TopicDetailPage() {
         setPage(1)
         moveToTop()
     }, [location]);
-
-    if (isLoading || isError) {
+    if(isLoading) {
+        return(
+            <div className="container">
+                <Loading/>
+            </div>
+        )
+    }
+    if (isError) {
         return(
             <div className="container">
                 <div className="category_name">
