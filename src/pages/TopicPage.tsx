@@ -65,7 +65,9 @@ export default function TopicPage() {
     return (
         <div className="container">
             <div className="category_name">{detail.name}</div>
-            {createTopicCard(page, data)}
+            <div className="topic_cards">
+                {createTopicCard(page, data)}
+            </div>
             {data.length === 0 ? <></> :
             <Paging page={page} count={data.length} itemsCountPerPage={itemsCountPerPage} setPage={changePage}></Paging> }
         </div>
