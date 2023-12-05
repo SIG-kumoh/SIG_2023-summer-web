@@ -29,8 +29,14 @@
     display: flex;
     border-top: 2px dashed gray;
 
-    &:hover .topic_title {
-      text-decoration: underline;
+    &:hover {
+      .topic_title {
+        text-decoration: underline;
+      }
+
+      .card_body_img {
+        transform: scale(1.1);
+      }
     }
 
     .card_body_left {
@@ -59,6 +65,7 @@
         height: 10rem;
         object-fit: fill;
         border-radius: 32px;
+        transition: all 0.2s linear;
 
         @include break_point1 {
           border-radius: 20px;
