@@ -21,8 +21,8 @@ function createTopicNews(page: number, itemsCountPerPage:number, data: Array<New
         const news = data[i]
         
         result.push(
-            <li className="news" key={news.url}>
-                <Link to={news.url} target="_blank">
+            <li className="news" key={news.articleId}>
+                <Link key={news.articleId} to={news.url} target="_blank">
                     <NewsCard key={news.articleId} title={news.title} url={news.url} imgUrl={news.imgUrl} regdate={news.regdate} press={news.press} content={news.content} articleId={news.articleId}/>
                 </Link>
             </li>
