@@ -1,9 +1,9 @@
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 import {BaseURL} from "../../config/config";
 import {useState} from "react";
 
 export default function Id({setId, id}:{setId:Function, id:string}) {
-    const {username, isLoggedIn, authorization} = loginStore()
+    const {username, isLoggedIn} = usePageStore()
     const [isDuple, setIsDuple] = useState<boolean>(false)
 
     const makeIdBox = () => {

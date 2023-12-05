@@ -1,6 +1,6 @@
-import {BaseURL, ChatURL, Message, ServerURL} from "../../config/config";
+import {Message, ServerURL} from "../../config/config";
 import React, {useEffect, useRef} from "react";
-import {loginStore} from "../../store";
+import {usePageStore} from "../../store";
 
 interface MessagesProp {
     messages:Array<Message>
@@ -8,7 +8,7 @@ interface MessagesProp {
 }
 
 export default function Messages(prop:MessagesProp) {
-    const {authority, authorization} = loginStore()
+    const {authority, authorization} = usePageStore()
     let messages:Array<Message> = prop.messages
     let room_name:string = prop.room_name
     const scrollRef = useRef<HTMLDivElement | null>(null)

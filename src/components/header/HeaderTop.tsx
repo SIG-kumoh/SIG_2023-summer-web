@@ -1,15 +1,13 @@
 import {Link, useNavigate} from "react-router-dom";
-import {loginStore, usePageStore} from "../../store";
+import {usePageStore} from "../../store";
 import {PostLogout} from "../../config/post_method";
 
 export default function HeaderTop() {
-    const {setCur} = usePageStore();
-    const {isLoggedIn, authorization, setIsLoggedIn, username, setAuthorization, setAuthority, authority} = loginStore()
+    const {setCur, isLoggedIn, authorization, setIsLoggedIn, username, setAuthorization, setAuthority} = usePageStore();
     const navi = useNavigate()
 
     let today:Date = new Date()
     const week:Array<string> = ['일', '월', '화', '수', '목', '금', '토']
-    //console.log(username, isLoggedIn, authorization, setIsLoggedIn, setAuthorization, setAuthority, authority)
 
     const logout = () => {
         PostLogout(authorization)
@@ -30,7 +28,7 @@ export default function HeaderTop() {
                             <div className="main_date">
                                 {today.getMonth() + 1}월 {today.getDate()}월 {week[today.getDay()]}요일
                             </div>
-                            <img className="logo" src={"/img/오늘의 뉴스.png"}/>
+                            <img className="logo" src={"/img/오늘의 뉴스.png"} alt={"/img/오늘의 뉴스.png"}/>
                         </div>
                     </Link>
                 </div>

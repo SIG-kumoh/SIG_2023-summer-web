@@ -1,13 +1,12 @@
 import {BiUser} from "react-icons/bi";
 import {AiFillLock} from "react-icons/ai";
 import {Link, useNavigate} from "react-router-dom";
-import {loginStore, usePageStore,} from "../../store";
+import {usePageStore,} from "../../store";
 import React, {useState} from "react";
-import {BaseURL, GetServerDataWithAuthorization} from "../../config/config";
+import {BaseURL} from "../../config/config";
 
 export default function Login() {
-    const {setCur} = usePageStore();
-    const {setIsLoggedIn, setAuthorization, setAuthority, setUsername} = loginStore()
+    const {setCur, setIsLoggedIn, setAuthorization, setAuthority, setUsername} = usePageStore();
     const navigate = useNavigate()
     const [id, setId] = useState<string>("")
     const [pw, setPw] = useState<string>("")
