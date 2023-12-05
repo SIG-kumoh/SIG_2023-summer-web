@@ -13,7 +13,7 @@ export default function ProposalNews() {
     }
     return(
         <div className="proposal_container">
-            {data.map((e:Topic) => <ProposalCard data={e}/>)}
+            {data.map((e:Topic, idx:number) => <ProposalCard key={idx} data={e}/>)}
         </div>
     )
 }
@@ -26,9 +26,16 @@ function ProposalCard({data}:{data:Topic}) {
                     <img className="proposal_img" src={data.imgUrl} alt={"이미지 없음"}/>
                 </div>
                 <div className="proposal_title">
-                    {data.title}
+                    {makeText(data.title)}
                 </div>
             </Link>
         </div>
     )
+}
+
+function makeText(text:string) {
+    if(text.length > 32) {
+        return text.substring(0, 29) + "..."
+    }
+    return text
 }

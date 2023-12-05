@@ -9,26 +9,28 @@
 
   .proposal_card{
     position: relative;
-    max-width: 30%;
+    width: 30%;
     border-radius: 10px;
     margin-right: 1rem;
     margin-bottom: 3rem;
+    height: 15rem;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 
     .img_container {
       width: 100%;
-      overflow: hidden;
-      border-radius: 10px;
-      img {
+      height: 70%;
+      .proposal_img {
+        border-radius: 10px;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: fill;
       }
     }
 
     .proposal_title {
       padding: 1rem;
       background-color: #ffffff;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       border-radius: 10px;
     }
     &:hover {
