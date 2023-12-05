@@ -23,10 +23,10 @@ export default function HeaderBottom() {
 function Card(data:Detail) {
     const {cur, setCur} = usePageStore();
     return(
-        <Link to={data.url}>
-            <div onClick={() => setCur(data.idx)} className={cur === data.idx ? "header_bottom_card select" : "header_bottom_card"}>
+        <div onClick={() => setCur(data.idx)} className={cur === data.idx ? "header_bottom_card select" : "header_bottom_card"}>
+            <Link to={data.url}>
                 {data.name}
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
