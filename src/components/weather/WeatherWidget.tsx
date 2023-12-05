@@ -50,17 +50,17 @@ export default function WeatherWidget() {
 
     const weatherData:Array<Weather> = []
     const curHour = new Date().getHours()
-    let pushFlag: boolean = false
+    let flag: boolean = false
     for (let i = 0; i < resBody.length && weatherData.length < 5; i++) {
         const e: any = resBody[i];
 
         if (i !== 0 && i % 12 === 0) {
             const fcstTimeVal = parseInt(fcstTime.slice(0, 2))
             if (curHour === fcstTimeVal) {
-                pushFlag = true
+                flag = true
             }
 
-            if (pushFlag) {
+            if (flag) {
                 weatherData.push({
                     fcstTime: fcstTime,
                     temperature: temperature,
@@ -74,8 +74,6 @@ export default function WeatherWidget() {
         fcstTime = e.fcstTime;
         if (e.category === "TMP") {
             temperature = e.fcstValue;
-            minTemperature = minTemperature < temperature ? minTemperature : temperature
-            maxTemperature = maxTemperature > temperature ? maxTemperature : temperature
         } else if (e.category === "POP") {
             rainPercent = e.fcstValue;
         } else if (e.category === "SKY") {
@@ -85,18 +83,33 @@ export default function WeatherWidget() {
         }
     }
 
-    function onClick(e:React.MouseEvent) {
-        setClick(!click)
+    flag = false
+    let count = 0
+    for (let i = 0; i < resBody.length && count < 24; i++) {
+        const e: any = resBody[i];
+        const fcstTimeVal = parseInt(e.fcstTime.slice(0, 2))
+        if (curHour === fcstTimeVal) {
+            flag = true
+        }
+
+        if (flag && e.category === "TMP") {
+            temperature = e.fcstValue;
+            minTemperature = minTemperature < temperature ? minTemperature : temperature
+            maxTemperature = maxTemperature > temperature ? maxTemperature : temperature
+            count++
+        }
     }
+
+
     return(
-        <div onClick={(e) => {onClick(e)}} className="weather_widget">
+        <div className="weather_widget">
             <div className="weather_container">
                 <div className="simple_weather_info">
                     <div className="locate_info">경북 구미시</div>
                     <img className="simple_weather_icon" src={imageSelector(weatherData[0])} alt=""/>
                     <div className="temperature">{weatherData[0].temperature} °C</div>
                 </div>
-                <div className={click ? "weather_info hide" : "weather_info"}>
+                <div className="weather_info">
                     <div className="sub_info">
                         <div className="rainPercent">
                             강수확률 : {weatherData[0].rainPercent}%{weatherData[0].rainPercent > 50 && weatherData[0].rainStatus !== "없음" ? "(" + weatherData[0].rainStatus + ")" : ""}
@@ -184,7 +197,7 @@ function imageSelector(weather: Weather) {
 }
 
 function hourSelector(hour: number) {
-    if (0 <= hour && hour <= 2) {
+    if (0 < hour && hour <= 2) {
         return '2300'
     } else if (2 < hour && hour <= 5) {
         return '0200'
@@ -206,7 +219,7 @@ function hourSelector(hour: number) {
 async function getWeatherData(today : Date) :Promise<ApiResponse> {
     const serviceKey: string = process.env.REACT_APP_WEATHER_SERVICE_KEY!
 
-    if (0 <= today.getHours() && today.getHours() < 2) {
+    if (0 < today.getHours() && today.getHours() <= 2) {
         today.setDate(today.getDate() - 1)
     }
     const year: number = today.getFullYear();
