@@ -155,37 +155,38 @@
         }
 
         .header_bottom_card {
-          margin-right: 2rem;
+          padding-left: 10px;
+          padding-right: 2rem;
           cursor: pointer;
 
           @include break_point1 {
-            margin-right: 1rem;
+            padding-right: 1rem;
             font-size: 0.8rem;
           }
 
           @include break_point2 {
-            margin-right: 2rem;
+            padding-right: 2rem;
           }
 
           @include break_point3 {
-            margin-right: 1rem;
-          }
-
-          &:first-child {
-            margin-left: 10px;
+            padding-right: 1rem;
           }
 
           &:hover {
-            font-weight: bold;
-            color: $dark-clay;
-            border-bottom: $dark-clay 1px solid;
+            .section_name {
+              font-weight: bold;
+              color: $dark-clay;
+              border-bottom: $dark-clay 1px solid;
+            }
           }
         }
 
         .select {
-          font-weight: bold;
-          color: $dark-clay;
-          border-bottom: $dark-clay 1px solid;
+          .section_name {
+            font-weight: bold;
+            color: $dark-clay;
+            border-bottom: $dark-clay 1px solid;
+          }
         }
       }
 

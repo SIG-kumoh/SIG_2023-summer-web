@@ -25,7 +25,7 @@ function Card(data:Detail) {
     return(
         <Link to={data.url}>
             <div onClick={() => setCur(data.idx)} className={cur === data.idx ? "header_bottom_card select" : "header_bottom_card"}>
-                {data.name}
+                <div className="section_name">{data.name}</div>
             </div>
         </Link>
     )
