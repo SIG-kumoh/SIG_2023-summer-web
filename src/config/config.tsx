@@ -39,8 +39,8 @@ export function GetTodayDate() {
     let year = today.getFullYear();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    return "2023-12-05"
-    //return year + "-" + month + "-" + day
+    //return "2023-12-05"
+    return year + "-" + month + "-" + day
 }
 
 export function GetTodayDateAndTime(cur:string):string {
