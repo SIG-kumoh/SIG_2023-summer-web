@@ -97,7 +97,6 @@ export default function WeatherWidget() {
             temperature = parseInt(e.fcstValue);
             minTemperature = minTemperature < temperature ? minTemperature : temperature
             maxTemperature = maxTemperature > temperature ? maxTemperature : temperature
-            console.log(`temperature: ${temperature}\nmin: ${minTemperature}\nmax: ${maxTemperature}`)
             count++
         }
     }
