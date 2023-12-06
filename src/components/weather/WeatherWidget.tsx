@@ -1,5 +1,6 @@
 import {Weather} from "../../config/config";
 import {useEffect, useState} from "react";
+import {min} from "d3";
 
 interface ApiResponse {
     response: {
@@ -93,9 +94,10 @@ export default function WeatherWidget() {
         }
 
         if (flag && e.category === "TMP") {
-            temperature = e.fcstValue;
+            temperature = parseInt(e.fcstValue);
             minTemperature = minTemperature < temperature ? minTemperature : temperature
             maxTemperature = maxTemperature > temperature ? maxTemperature : temperature
+            console.log(`temperature: ${temperature}\nmin: ${minTemperature}\nmax: ${maxTemperature}`)
             count++
         }
     }
