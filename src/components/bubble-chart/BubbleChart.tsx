@@ -32,7 +32,7 @@ const width = 1028
 const height = 550
 
 function makeTextArray(text:string, size: number) {
-    const textLength = size * 0.6
+    const textLength = size * 0.9
     if (text.length > textLength * 3) {
         text = text.substring(0, textLength * 3 - 3) + "..."
     }
